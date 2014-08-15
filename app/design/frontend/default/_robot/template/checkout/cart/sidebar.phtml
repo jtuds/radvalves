@@ -1,0 +1,56 @@
+<?php $_no_of_items = $this->getSummaryCount(); ?>
+
+    <div class="module-sidebar-basket">
+		<div class="basket">
+            <a href="<?php echo $this->getUrl('checkout/cart'); ?>" class="button-icon shopping-cart-button">
+                <span class="hide-text">View your basket</span>
+                <i class="icon-shopping-cart icon-round"></i>
+            </a>
+            <p class="basket-header-short">Basket</p>
+            <?php if($_no_of_items) { ?>
+				<?php if($_no_of_items == 1){ ?>
+                    <p class="items-count-short">(<?php echo $_no_of_items; ?> item)</p>
+                    <i class="icon-caret-down show-basket-icon closed"><span>Show full basket</span></i>
+                	<i class="icon-caret-up show-basket-icon open"><span>Close full basket</span></i>
+                <?php } else { ?>
+                    <p class="items-count-short">(<?php echo $_no_of_items; ?> items)</p>
+                    <i class="icon-caret-down show-basket-icon closed"><span>Show full basket</span></i>
+                	<i class="icon-caret-up show-basket-icon open"><span>Close full basket</span></i>
+                <?php } ?>
+            <?php } else { ?>
+                <p class="items-count-short">(0 items)</p>
+                <i class="icon-caret-down show-basket-icon closed"><span>Show full basket</span></i>
+                <i class="icon-caret-up show-basket-icon open"><span>Close full basket</span></i>
+             <?php } ?>
+            <div class="basket-items-count">
+            	<?php if($_no_of_items) { ?>
+					<?php if($_no_of_items == 1){ ?>
+                        <p>There is <?php echo $_no_of_items; ?> item in your basket.<br /><a href="<?php echo $this->getUrl('checkout/cart'); ?>">View basket</a></p>
+                    <?php } else { ?>
+                        <p>There are <?php echo $_no_of_items; ?> items in your basket.<br /><a href="<?php echo $this->getUrl('checkout/cart'); ?>">View basket</a></p>
+                    <?php } ?>
+               	<?php } else { ?>
+                	<p>There are 0 items in your basket.<br /><a href="<?php echo $this->getUrl('checkout/cart'); ?>">View basket</a></p>
+             	<?php } ?>
+            </div><!-- close .basket-items-count -->
+			<?php $_items = $this->getRecentItems(); ?>
+            <?php if(count($_items)){ ?>
+                <ul class="basket-items-list">
+                    <?php $i = 0; foreach($_items as $_item): $i++; ?>
+                        <?php echo $this->getItemHtml($_item); ?>
+                    <?php endforeach; ?>
+                </ul><!-- close .basket-items-list -->
+            <?php } ?>
+            <ul class="basket-totals-list">
+            	<li>
+                    <span class="type">Subtotal</span>
+                    <span class="value"><?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?></span>
+            	</li>
+            </ul><!-- close .basket-totals-list -->
+		</div><!-- close .basket -->
+		<?php if($this->isPossibleOnepageCheckout()){ ?>
+            <button type="button" class="button-checkout" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')">
+                <span class="text">Go to checkout</span>
+            </button>
+        <?php } ?>
+    </div><!-- close .module-sidebar-basket -->

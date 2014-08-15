@@ -1,0 +1,31 @@
+<div id="checkout-payment-method-load">
+    <ul class="payment-methods-list">
+		<?php $methods = $this->getMethods(); $oneMethod = count($methods) <= 1; ?>
+        <?php foreach ($methods as $_method): $_code = $_method->getCode(); ?>
+            <li>
+                <div class="field">
+                    <div class="option">
+                        <?php if($oneMethod){ ?>
+                            <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" checked="checked" class="radio" />
+                            <?php $oneMethod = $_code; ?>
+                        <?php } else { ?>
+                            <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" onclick="payment.switchMethod('<?php echo $_code ?>')"<?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> class="radio" />
+                        <?php } ?>
+                        <label for="p_method_<?php echo $_code ?>"><?php echo $this->escapeHtml($this->getMethodTitle($_method)) ?> <?php echo $this->getMethodLabelAfterHtml($_method) ?></label>
+                    </div>
+                </div>
+            	<?php if ($html = $this->getPaymentMethodFormHtml($_method)){ echo $html; } ?>
+        	</li>
+		<?php endforeach; ?>
+	</ul>
+</div>
+<?php echo $this->getChildChildHtml('additional'); ?>
+<script type="text/javascript">
+	//<![CDATA[
+	<?php echo $this->getChildChildHtml('scripts'); ?>
+	payment.init();
+	<?php if (is_string($oneMethod)): ?>
+		payment.switchMethod('<?php echo $oneMethod ?>');
+	<?php endif; ?>
+	//]]>
+</script>

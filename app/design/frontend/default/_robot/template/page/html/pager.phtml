@@ -1,0 +1,43 @@
+<?php if($this->getCollection()->getSize()){ ?>
+    <?php if($this->getLastPageNum()>1){ ?>
+        <ol class="pagination">
+        
+            <li class="previous-page">
+                <a href="<?php echo $this->getPreviousPageUrl() ?>" class="button-icon<?php if($this->isFirstPage()){ ?> current<?php } ?>">
+                    <span class="hide-text">Previous</span>
+                    <i class="icon-chevron-sign-left"></i>
+                </a>
+            </li>
+            
+            <?php if($this->canShowFirst()){ ?>
+                <li class="first-page"><a href="<?php echo $this->getFirstPageUrl() ?>">1</a></li>
+            <?php } ?>
+            <?php if($this->canShowPreviousJump()){ ?>
+                <li class="previous-jump"><a href="<?php echo $this->getPreviousJumpUrl() ?>">...</a></li>
+            <?php } ?>
+    
+            <?php $i = 0; foreach($this->getFramePages() as $_page): $i++; ?>
+                <?php if($this->isPageCurrent($_page)){ ?>
+                    <li class="current-page"><?php echo $_page ?></li>
+                <?php } else { ?>
+                    <li class="page"><a href="<?php echo $this->getPageUrl($_page) ?>"><?php echo $_page ?></a></li>
+                <?php } ?>
+            <?php endforeach; ?>
+    
+            <?php if($this->canShowNextJump()){ ?>
+                <li class="next-jump"><a href="<?php echo $this->getNextJumpUrl() ?>">...</a></li>
+            <?php } ?>
+            <?php if($this->canShowLast()){ ?>
+                <li class="last-page"><a href="<?php echo $this->getLastPageUrl() ?>"><?php echo $this->getLastPageNum() ?></a></li>
+            <?php } ?>
+            
+            <li class="next-page">
+                <a href="<?php echo $this->getNextPageUrl() ?>" class="button-icon<?php if($this->isLastPage()){ ?> current<?php } ?>">
+                    <span class="hide-text">Next</span>
+                    <i class="icon-chevron-sign-right"></i>
+                </a>
+            </li>
+        
+        </ol><!-- close .pagination -->
+    <?php } ?>
+<?php } ?>

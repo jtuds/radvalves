@@ -1,0 +1,54 @@
+<?php if($this->getCollection()->getSize()){ ?>
+	<div class="module-category-toolbar clear">
+        <div class="toolbar-count">
+            <?php if($this->getLastPageNum()>1){ ?>
+                <p><?php echo $this->getFirstNum(); ?> to <?php echo $this->getLastNum(); ?> of <?php echo $this->getTotalNum(); ?> products</p>
+            <?php } else { ?>
+                <p><?php echo $this->getTotalNum(); ?> products</p>
+            <?php } ?>
+        </div><!-- close .toolbar-count -->
+        <ul class="toolbar-options clear">
+            <li class="toolbar-option">
+				<input type="checkbox" name="toggle-config-limit" id="toggle-config-limit">
+                <label for="toggle-config-limit" class="toggle control">
+                    <span class="text">View</span>
+                    <i class="icon-plus-sign"></i>
+                </label>
+                <div class="window">
+                    <ul class="config-limit">
+                        <?php $i = 0; foreach($this->getAvailableLimit() as $_key=>$_limit): $i++; ?>
+                            <li><a href="<?php echo $this->getLimitUrl($_key); ?>"<?php if($this->isLimitCurrent($_key)){ ?> class="active"<?php } ?>><?php echo $_limit ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </li>
+            <li class="toolbar-option">
+                <input type="checkbox" name="toggle-config-sort" id="toggle-config-sort">
+                <label for="toggle-config-sort" class="toggle control">
+                    <span class="text">Sort</span>
+                    <i class="icon-sort-by-attributes"></i>
+                </label>
+                <div class="window">
+                    <ul class="config-sort">
+                        <?php $i = 0; foreach($this->getAvailableOrders() as $_key=>$_order): $i++; ?>
+                            <li><a href="<?php echo $this->getOrderUrl($_key,'asc'); ?>"<?php if($this->isOrderCurrent($_key)){ ?>class="active"<?php } ?>><?php echo $this->__($_order); ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </li>
+            <?php if($this->isEnabledViewSwitcher()){ ?>
+            <?php $_modes = $this->getModes(); ?>
+                <?php if($_modes && count($_modes)>1){ ?>
+                    <?php $i = 0; foreach($this->getModes() as $_code=>$_label): $i++; ?>
+                        <li class="toolbar-option <?php echo strtolower($_code); ?>-view">
+                            <a href="<?php echo $this->getModeUrl($_code) ?>" class="control<?php if($this->isModeActive($_code)){ ?> active<?php } ?>">
+                                <span class="text"><?php echo $_label ?></span>
+                                <i class="icon<?php if(strtolower($_code) == 'grid'){ ?>-th-large<?php } else { ?>-th-list<?php }?>"></i>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                <?php } ?>
+            <?php } ?>
+        </ul><!-- close .toolbar-options -->
+	</div><!-- close .module-category-toolbar -->
+<?php } ?>

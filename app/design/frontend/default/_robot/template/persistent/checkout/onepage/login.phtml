@@ -1,0 +1,98 @@
+<div class="grid-offset">
+	<?php echo $this->getChildHtml('login_before')?>
+    <div class="grid-col bp2-col-half ie8-col-half">
+        <h2 class="heading">New customers</h2>
+        <?php if($this->getQuote()->isAllowedGuestCheckout()){ ?>
+            <h3>Save time now</h3>
+			<p>You don't need an account to checkout.</p>
+            <div class="field">
+                <div class="option">
+                    <input type="radio" name="checkout_method" id="login:guest" value="guest"<?php if($this->getQuote()->getCheckoutMethod()==Mage_Checkout_Model_Type_Onepage::METHOD_GUEST): ?> checked="checked"<?php endif; ?> class="radio" />
+                    <label for="login:guest">Checkout as a guest</label>
+                </div>
+            </div>
+            <h3>Save time later</h3>
+            <p>Create an account to speed up the checkout process and for easy access to your order history.</p>
+            <div class="field">
+                <div class="option">
+                    <input type="radio" name="checkout_method" id="login:register" value="register"<?php if($this->getQuote()->getCheckoutMethod()==Mage_Checkout_Model_Type_Onepage::METHOD_REGISTER || !$this->getQuote()->isAllowedGuestCheckout()): ?> checked="checked"<?php endif ?> class="radio" />
+                    <label for="login:register">Register and checkout</label>
+                </div>
+            </div>
+            <button id="onepage-guest-register-button" type="button" class="button" onclick="checkout.setMethod();">
+                <span class="text">Continue</span>
+            </button>
+        <?php } else { ?>
+            <input type="hidden" name="checkout_method" id="login:register" value="register" checked="checked" />
+            <?php if ($this->helper('checkout')->isCustomerMustBeLogged()){ ?>
+            	<p>You must be signed in to checkout. Create an account now.</p>
+                <button id="onepage-guest-register-button" type="button" class="button" onclick="window.location='<?php echo $this->helper('checkout/url')->getRegistrationUrl();?>'">
+                    <span class="text">Create an account</span>
+                </button>
+            <?php } else { ?>
+                <p>Create an account to speed up the checkout process and for easy access to your order history.</p>
+                <form action="<?php echo $this->getUrl('persistent/index/saveMethod'); ?>">
+                    <button id="onepage-guest-register-button" type="submit" class="button">
+                        <span class="text">Register and checkout</span>
+                    </button>
+                </form>
+            <?php }  ?>
+        <?php } ?>
+    </div>
+    <div class="grid-col bp2-col-half ie8-col-half">
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+        <form id="login-form" action="<?php echo $this->getPostAction() ?>" method="post" class="form form-checkout-sign-in">
+            <div class="fieldset">
+                <h2 class="heading">Existing customers</h2>
+                <p>Already have an account? Please sign in.</p>
+                <div class="field">
+                    <label for="login-email" class="field-label required">Email address</label>
+                    <input type="text" class="input required-entry validate-email" id="login-email" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" />
+                </div>
+                <div class="field">
+                    <label for="login-password" class="field-label required">Password</label>
+                    <input type="password" class="input required-entry" id="login-password" name="login[password]" />
+                </div>
+                <input name="context" type="hidden" value="checkout" />
+                <button type="submit" class="button" onclick="onepageLogin(this)">
+                    <span class="text">Sign in</span>
+                </button>
+                <a href="<?php echo $this->getUrl('customer/account/forgotpassword') ?>" class="f-left">Forgotten your password?</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    var loginForm = new VarienForm('login-form', true);
+    $('login-email').observe('keypress', bindLoginPost);
+    $('login-password').observe('keypress', bindLoginPost);
+    function bindLoginPost(evt){
+        if (evt.keyCode == Event.KEY_RETURN) {
+            loginForm.submit();
+        }
+    }
+    function onepageLogin(button)
+    {
+        if(loginForm.validator && loginForm.validator.validate()){
+            button.disabled = true;
+            loginForm.submit();
+        }
+    }
+//]]>
+</script>
+<?php
+    $registerParam = $this->getRequest()->getParam('register');
+    if ($registerParam || $registerParam === ''):
+?>
+    <script type="text/javascript">
+    //<![CDATA[
+        document.observe("dom:loaded", function() {
+            if($('login:register')) {
+                $('login:register').checked = true;
+                checkout.setMethod();
+            }
+        })
+    //]]>
+    </script>
+<?php endif; ?>

@@ -1,0 +1,31 @@
+<div class="module-form module-form-sign-in">
+    <h1 class="page-title">Sign in</h1>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form" class="form form-sign-in">
+    	<div class="fieldset">
+        	<div class="field">
+                <label for="email" class="field-label required">Email address</label>
+                <input type="text" name="login[username]" value="<?php echo $this->htmlEscape($this->getUsername()) ?>" id="email" class="input required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
+            </div>
+        	<div class="field">
+                <label for="pass" class="field-label required"><?php echo $this->__('Password') ?></label>
+                <input type="password" name="login[password]" class="input required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" />
+            </div>
+
+			<a href="<?php echo $this->getForgotPasswordUrl() ?>" class="f-left"><?php echo $this->__('Forgot Your Password?') ?></a>
+            
+            <button type="submit" class="button" title="<?php echo $this->__('Login') ?>" name="send" id="send2">
+                <span class="text">Sign in</span>
+            </button>
+            
+			<?php if (Mage::helper('checkout')->isContextCheckout()): ?>
+                <input name="context" type="hidden" value="checkout" />
+            <?php endif; ?>
+		</div>
+    </form><!-- close .form-sign-in -->
+    <script type="text/javascript">
+    //<![CDATA[
+        var dataForm = new VarienForm('login-form', true);
+    //]]>
+    </script>
+</div><!-- close .module-form -->

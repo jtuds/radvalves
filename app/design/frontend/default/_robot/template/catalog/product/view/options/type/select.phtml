@@ -1,0 +1,5 @@
+<?php $_option = $this->getOption() ?>
+<div class="field field-select">
+	<label class="field-label<?php if($_option->getIsRequire()){ ?> required<?php } ?>"><?php echo $this->htmlEscape($_option->getTitle()) ?></label>
+	<?php echo $this->getValuesHtml() ?>
+</div>

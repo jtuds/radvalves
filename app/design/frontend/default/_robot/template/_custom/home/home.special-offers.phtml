@@ -1,0 +1,68 @@
+<?php 
+/**
+* VARIABLES
+*/
+$_category 						= Mage::getModel('catalog/category')->load(7);
+$_products 						= Mage::getModel('catalog/product')->getCollection()->setPageSize(6)->addAttributeToFilter('visibility',array('neq'=>1))->addAttributeToSort('name','asc')->addCategoryFilter($_category);
+?>
+
+<?php if($_products){ ?>
+    <div class="module-products module-home-special-offers">
+        <h2 class="heading-large">Special offers</h2>
+        <ul class="grid-offset products product-grid">
+        
+			<?php 
+            /**
+            * VARIABLES
+            */
+            $i = 0; foreach($_products as $_product): $i++;
+			$_store_ID 						= Mage::app()->getStore()->getId();
+        	$_product 						= Mage::getModel('catalog/product')->setStoreId($_store_ID)->load($_product->getId());
+			$_product_ID 					= $_product->getId();
+			$_product_url					= $_product->getProductUrl();
+			$_product_edit_url				= $_product->getConfigureUrl();
+			$_product_type					= $_product->getTypeId();
+			$_product_name					= $_product->getName();
+			$_product_short_description		= $_product->getShortDescription();
+			$_product_description			= $_product->getDescription();
+			$_product_image					= $this->helper('catalog/image')->init($_product,'thumbnail')->resize(420,280);
+			$_product_image_url				= Mage::getModel('catalog/product_media_config')->getMediaUrl($_product->getImage());
+			$_now							= date("Y-m-d H:m:s");
+			$_product_new_from_date			= $_product->getNewsFromDate();
+			$_product_new_to_date			= $_product->getNewsToDate();
+			$_product_regular_price			= $this->helper('core')->currency($_product->getPrice(),true,false);
+			$_product_final_price			= $this->helper('core')->currency($_product->getFinalPrice(),true,false);
+			$_product_rating				= Mage::getModel('review/review_summary')->setStoreId($_store_ID)->load($_product_ID)->getRatingSummary();
+			$_product_star_rating			= round($_product_rating / 20,1);
+			?>
+            
+                <li class="grid-col bp1-col-1thr ie8-col-1thr">
+                    <div class="product-basic">
+                        <?php if($_product_new_from_date < $_now && $_product_new_to_date > $_now){ ?><span class="product-icon-new">New!</span><?php } ?>
+                        <div class="product-image">
+                        	<a href="<?php echo $_product_url; ?>"><img src="<?php echo $_product_image; ?>" alt="<?php echo $_product_name; ?>" /></a>
+                        </div>
+                        <div class="product-details">
+                            <h3 class="product-name">
+                                <a href="<?php echo $_product_url; ?>"><?php echo $_product_name; ?></a>
+                            </h3>
+							<?php if($_product_type !== 'grouped'){ ?>
+                                <div class="product-price">
+									<?php if($_product_final_price == $_product_regular_price){ ?>
+                                        <span class="price"><?php echo $_product_final_price; ?></span>
+                                    <?php } else { ?>
+                                        <span class="price-old"><?php echo $_product_regular_price; ?></span>
+                                        <span class="price-new"><?php echo $_product_final_price; ?></span>
+                                    <?php } ?>
+                                </div>
+							<?php } ?>
+                            <div class="<?php if($_product_rating){ ?>product-rating<?php } else { ?>product-no-rating<?php } ?>">
+                                <?php if($_product_rating){ ?><span class="product-star-rating" style="width:<?php echo $_product_rating; ?>%;"><?php echo $_product_star_rating; ?> out of 5</span><?php } else { ?><span>This product has not been reviewed.</span><?php } ?>
+                            </div>
+                        </div>
+                    </div><!-- close .product-basic -->
+                </li><!-- close .grid-col -->
+            <?php endforeach; ?>  
+        </ul><!-- close .products -->
+    </div><!-- close .module-home-special-offers -->
+<?php } ?>

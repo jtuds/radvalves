@@ -1,0 +1,5 @@
+<?php if($this->isPossibleOnepageCheckout()){ ?>
+    <button type="button" class="button-checkout" onclick="window.location='<?php echo $this->getCheckoutUrl() ?>';">
+        <span class="text">Go to checkout</span>
+    </button>
+<?php } ?>

@@ -1,0 +1,47 @@
+
+/*
+Theme name:		Grid
+Version:		1.0 
+Author:			Chris Cairns
+Author URI:		http://www.robotcreative.co.uk
+*/
+
+
+/*==================================================================================================
+1.		GRID STRUCTURE
+==================================================================================================*/
+
+.grid-row {
+	margin:0 auto;
+	max-width:1000px;
+	padding:0 10px;
+}
+.grid-col {
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	float:left;
+	padding:0 10px;
+	width:100%;
+}
+.grid-offset {
+	margin:0 -10px;
+}
+.grid-row:after,
+.grid-offset:after {
+	clear:both;
+	content:'';
+	display:table;
+}
+
+
+/*==================================================================================================
+2.		IE FIXES
+==================================================================================================*/
+
+.ie8 .grid-row {
+	width:980px;
+}
+.ie7 .grid-col:last-child {
+	margin-right:-5px;
+}

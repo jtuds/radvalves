@@ -1,0 +1,20 @@
+<ol class="orders-list">
+    <?php $i = 0; foreach($_totals as $_total): $i++; ?>
+        <li>
+            <div class="order-date">
+                <?php echo $this->formatDate($_order->getCreatedAtStoreDate()) ?>
+            </div>
+            <div class="order-details">
+            	<span class="order-id"><?php echo $_order->getRealOrderId() ?></span>
+	            <span class="order-recipient"><?php echo $_order->getShippingAddress() ? $this->htmlEscape($_order->getShippingAddress()->getName()) : '&nbsp;' ?></span>
+                <span class="order-status"><?php echo $_order->getStatusLabel() ?></span>
+            </div>
+            <div class="order-total">
+            	<span><?php echo $_order->formatPrice($_order->getGrandTotal()) ?></span>
+            </div>
+            <div class="order-view-button">
+                <a href="<?php echo $this->getViewUrl($_order) ?>">View order</a>
+            </div>
+        </li>
+    <?php endforeach; ?>
+</ol><!-- close .orders-list -->

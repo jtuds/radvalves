@@ -1,0 +1,13 @@
+<h3 class="heading">Delivery method</h3>
+<p><?php echo $this->getShippingDescription(); ?>
+                    <?php $_excl = $this->getShippingPriceExclTax(); ?>
+                    <?php $_incl = $this->getShippingPriceInclTax(); ?>
+                    <?php if ($this->helper('tax')->displayShippingPriceIncludingTax()): ?>
+                        <?php echo $_incl; ?>
+                    <?php else: ?>
+                        <?php echo $_excl; ?>
+                    <?php endif; ?>
+                    <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                        (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+                    <?php endif; ?>
+</p>

@@ -1,0 +1,16 @@
+<div class="module-navbar-search">
+    <form action="<?php echo $this->helper('catalogsearch')->getResultUrl() ?>" method="get" class="form form-navbar-search" id="search_mini_form">
+        <div class="fieldset">
+            <div class="field">
+                <label for="search" class="field-label">Search</label>
+                <input type="text" name="<?php echo $this->helper('catalogsearch')->getQueryParamName() ?>" id="search" class="input" placeholder="Search" />
+            </div>
+        </div>
+        <div class="form-buttons">
+            <button type="submit" class="button-icon">
+                <span class="hide-text">Search</span>
+                <i class="icon-search"></i>
+            </button>
+    	</div>
+    </form><!-- close .form-navbar-search -->
+</div><!-- close .module-navbar-search -->

@@ -1,0 +1,19 @@
+<?php if($crumbs && is_array($crumbs)){ ?>
+    <div class="module-breadcrumbs">
+        <ul class="breadcrumbs clear">
+            <?php $i = 0; foreach($crumbs as $_crumbName => $_crumbInfo): $i++; ?>
+                <li<?php if($_crumbInfo['last']){ ?> class="last"<?php } ?>>
+                	<?php if($_crumbName == 'Home'){ ?>
+                        <a href="<?php echo $this->getBaseUrl(); ?>"><?php echo $this->htmlEscape($_crumbInfo['label']) ?></a>
+					<?php } elseif($_crumbName == 'My account dashboard'){ ?>
+						<a href="<?php echo $this->getUrl('customer/account'); ?>"><?php echo $this->htmlEscape($_crumbInfo['label']) ?></a>
+					<?php } elseif($_crumbInfo['link']){ ?>
+                        <a href="<?php echo $_crumbInfo['link'] ?>"><?php echo $this->htmlEscape($_crumbInfo['label']) ?></a>
+					<?php } else { ?>
+                        <?php echo $this->htmlEscape($_crumbInfo['label']) ?>
+                    <?php } ?>
+                </li>
+            <?php endforeach; ?>
+        </ul><!-- close .breadcrumbs -->
+    </div><!-- close .module-breadcrumbs -->
+<?php } ?>

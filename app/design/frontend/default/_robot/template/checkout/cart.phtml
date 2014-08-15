@@ -1,0 +1,64 @@
+<div class="module-basket-full">
+    <h1 class="page-title">My basket</h1>
+	<div class="basket-full">
+        <div class="basket-items-count">
+            <?php $_no_of_items	= $this->helper('checkout/cart')->getSummaryCount(); ?>
+            <?php if($_no_of_items == 1){ ?>
+                <p>There is <?php echo $_no_of_items; ?> item in your basket.</p>
+            <?php } else { ?>
+                <p>There are <?php echo $_no_of_items; ?> items in your basket.</p>
+            <?php } ?>   
+        </div><!-- close .basket-items-count -->
+        <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post" class="form form-basket">
+            <div class="fieldset">
+                <ul class="basket-items-list">
+                    <?php $i = 0; foreach($this->getItems() as $_item): $i++; ?>
+                        <?php echo $this->getItemHtml($_item); ?>
+                    <?php endforeach; ?>
+                </ul><!-- close .basket-items-list -->
+            </div>
+            <div class="form-buttons clear">
+                <div class="update-basket">
+                    <button type="submit" name="update_cart_action" value="update_qty" class="button">
+                        <span class="text">Update basket</span>
+                    </button>
+                </div>
+                <div class="empty-basket">
+                    <button type="submit" name="update_cart_action" value="empty_cart" id="empty_cart_button" class="button">
+                        <span class="text">Empty basket</span>
+                    </button>
+                </div>
+                <?php if($this->getContinueShoppingUrl()){ ?>
+                    <div class="continue-shopping">
+                        <button type="button" class="button-important" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')">
+                            <span class="text">Continue shopping</span>
+                        </button>
+                    </div>
+                <?php } ?>
+            </div>
+        </form><!-- close .form-basket -->
+        <!--[if lt IE 8]>
+        <input type="hidden" id="update_cart_action_container" />
+        <script type="text/javascript">
+            //<![CDATA[
+                Event.observe(window, 'load', function()
+                {
+                    // Internet Explorer (lt 8) does not support value attribute in button elements
+                    $emptyCartButton = $('empty_cart_button');
+                    $cartActionContainer = $('update_cart_action_container');
+                    if ($emptyCartButton && $cartActionContainer) {
+                        Event.observe($emptyCartButton, 'click', function()
+                        {
+                            $emptyCartButton.setAttribute('name', 'update_cart_action_temp');
+                            $cartActionContainer.setAttribute('name', 'update_cart_action');
+                            $cartActionContainer.setValue('empty_cart');
+                        });
+                    }
+            
+                });
+            //]]>
+        </script>
+        <![endif]-->
+    </div><!-- close .basket-full -->
+</div><!-- close .module-basket-full -->
+

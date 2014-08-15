@@ -1,0 +1,99 @@
+<div class="module-form-address-book">
+	<?php if($this->getTitle()){ ?>
+		<h1 class="page-title"><?php echo $this->getTitle() ?></h1>
+	<?php } ?>
+	<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+	<form action="<?php echo $this->getSaveUrl() ?>" method="post" id="form-validate" class="form form-address-book">
+		<div class="fieldset">
+			<?php echo $this->getBlockHtml('formkey')?>
+            <input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
+            <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
+            <?php echo $this->getNameBlockHtml() ?>
+
+            <div class="field field-address">
+				<?php $_streetValidationClass = $this->helper('customer/address')->getAttributeValidationClass('street'); ?>
+				<label for="street_1" class="field-label required">Address</label>
+				<input type="text" name="street[]" value="<?php echo $this->escapeHtml($this->getAddress()->getStreet(1)) ?>" id="street_1" class="input <?php echo $_streetValidationClass ?>" />
+				
+				<?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+				<?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+                    <input type="text" name="street[]" value="<?php echo $this->escapeHtml($this->getAddress()->getStreet($_i)) ?>" id="street_<?php echo $_i ?>" class="input <?php echo $_streetValidationClass ?>" />
+                <?php endfor; ?>
+			</div>
+        
+            <?php if ($this->helper('customer/address')->isVatAttributeVisible()){ ?>
+                <div class="field">
+                    <label for="vat_id" class="field-label">VAT number</label>
+                    <input type="text" name="vat_id" value="<?php echo $this->escapeHtml($this->getAddress()->getVatId()) ?>" id="vat_id" class="input <?php echo $this->helper('customer/address')->getAttributeValidationClass('vat_id') ?>" />
+                </div>
+            <?php } ?>
+                
+            <div class="field">
+                <label for="city" class="field-label required">City</label>
+                <input type="text" name="city" value="<?php echo $this->escapeHtml($this->getAddress()->getCity()) ?>" class="input <?php echo $this->helper('customer/address')->getAttributeValidationClass('city') ?>" id="city" />
+            </div>
+            
+            <div class="field field-select">
+                <label for="region_id" class="required">State or province</label>
+                <select id="region_id" name="region_id" class="validate-select" style="display:none;">
+                   <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                </select>
+                <script type="text/javascript">
+                //<![CDATA[
+                    $('region_id').setAttribute('defaultValue',  "<?php echo $this->getAddress()->getRegionId() ?>");
+                //]]>
+                </script>
+                <input type="text" id="region" name="region" value="<?php echo $this->escapeHtml($this->getAddress()->getRegion()) ?>" class="input <?php echo $this->helper('customer/address')->getAttributeValidationClass('region') ?>" />
+            </div>
+
+            <div class="field">
+                <label for="zip" class="field-label required">Postcode</label>
+                <input type="text" name="postcode" value="<?php echo $this->escapeHtml($this->getAddress()->getPostcode()) ?>"id="zip" class="input validate-zip-international <?php echo $this->helper('customer/address')->getAttributeValidationClass('postcode') ?>" />
+            </div>
+            
+            <div class="field field-select">
+                <label for="country" class="field-label required">Country</label>
+                <?php echo $this->getCountryHtmlSelect() ?>
+            </div>
+
+			<div class="field">
+				<label for="telephone" class="field-label required">Telephone number</label>
+				<input type="text" name="telephone" value="<?php echo $this->escapeHtml($this->getAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="input <?php echo $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>" id="telephone" />
+			</div>
+            
+            <div class="field field-options">
+				<?php if($this->isDefaultBilling()): ?>
+                    <p>This is your default billing address.</p>
+                <?php elseif($this->canSetAsDefaultBilling()): ?>
+                    <div class="option">
+                    	<input type="checkbox" id="primary_billing" name="default_billing" value="1" class="checkbox" />
+                        <label for="primary_billing" class="option-label">Make this my default billing address</label>
+                    </div>
+                <?php else: ?>
+                    <input type="hidden" name="default_billing" value="1" />
+                <?php endif; ?>
+                <?php if($this->isDefaultShipping()): ?>
+                    <p>This is your default delivery address.</p>
+                <?php elseif($this->canSetAsDefaultShipping()): ?>
+                    <div class="option">
+                        <input type="checkbox" id="primary_shipping" name="default_shipping" value="1" class="checkbox" />
+                        <label for="primary_shipping" class="option-label">Make this my default delivery address</label>
+                    </div>
+                <?php else: ?>
+                    <input type="hidden" name="default_shipping" value="1" />
+                <?php endif; ?>
+            </div>
+		</div>
+		<div class="form-buttons">
+			<button type="submit" class="button">
+            	<span class="text">Save address</span>
+            </button>
+		</div>
+	</form>
+	<script type="text/javascript">
+	//<![CDATA[
+		var dataForm = new VarienForm('form-validate', true);
+		new RegionUpdater('country', 'region', 'region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+	//]]>
+	</script>
+</div><!-- close .module-form-address-book -->

@@ -1,0 +1,12 @@
+<?php $_category_name = $this->getCurrentCategory()->getName(); ?>
+<?php 	if 
+			($_category_name == "Radvalves") { $_subtitle = "Manual &amp; thermostatic"; }
+		elseif
+			($_category_name == "Designer radiators") { $_subtitle = "Beautiful"; }
+?>			
+<div class="module-content module-category-description">
+    <h1 class="page-title"><span class="page-subtitle"><?php if ($_subtitle) { echo $_subtitle; } ?></span> <?php echo $this->getCurrentCategory()->getName(); ?></h1>
+	<?php if($_category_description = $this->getCurrentCategory()->getDescription()){ ?>
+        <?php echo $_category_description; ?>
+	<?php } ?>
+</div><!-- close .module-category-description -->

@@ -1,0 +1,55 @@
+<?php
+/**
+* VARIABLES
+*/
+$_store_ID						= Mage::app()->getStore()->getId();
+$_product						= $this->getProduct();
+$_product_ID 					= $_product->getId();
+$_product_url					= $_product->getProductUrl();
+$_product_edit_url				= $_product->getConfigureUrl();
+$_product_type					= $_product->getTypeId();
+$_product_name					= $_product->getName();
+$_product_short_description		= $_product->getShortDescription();
+$_product_description			= $_product->getDescription();
+$_product_image					= $this->helper('catalog/image')->init($_product,'thumbnail')->resize(420,280);
+$_product_image_url				= Mage::getModel('catalog/product_media_config')->getMediaUrl($_product->getImage());
+$_now							= date("Y-m-d H:m:s");
+$_product_new_from_date			= $_product->getNewsFromDate();
+$_product_new_to_date			= $_product->getNewsToDate();
+$_product_regular_price			= $this->helper('core')->currency($_product->getPrice(),true,false);
+$_product_final_price			= $this->helper('core')->currency($_product->getFinalPrice(),true,false);
+$_product_rating				= Mage::getModel('review/review_summary')->setStoreId($_store_ID)->load($_product_ID)->getRatingSummary();
+$_product_star_rating			= round($_product_rating / 20,1);
+?>
+
+<ul class="social-buttons clear">
+	<li class="btn-tw">
+		<a href="https://twitter.com/share" class="twitter-share-button" data-via="Robot_Creative" data-related="Robot_Creative" data-count="none" data-text="Recommended &mdash; <?php echo $_product_name; ?> from @Robot_Creative" data-hashtags="robot">Tweet</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	</li>
+	<li class="btn-fb">
+		<div class="fb-like" data-send="false" data-width="60" data-show-faces="false" data-font="arial"></div>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		</script>
+	</li>
+	<li class="btn-pn">
+		<a href="//pinterest.com/pin/create/button/?url=<?php echo $_product_url; ?>&media=<?php echo $_product_image_url; ?>&description=Recommended%20&mdash;%20<?php echo $_product_name; ?>%20from%20@Robot_Creative" data-pin-do="buttonPin" data-pin-config="none">Pin It</a>
+		<script src="//assets.pinterest.com/js/pinit.js"></script>
+	</li>
+	<li class="btn-gg">
+		<div class="g-plusone" data-size="medium" data-annotation="none"></div>
+		<script src="https://apis.google.com/js/plusone.js">{lang: 'en-GB'}</script>
+	</li>
+	<?php if($this->canEmailToFriend()){ ?>
+		<li class="btn-email">
+			<a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>">Email to a friend</a></p>
+		</li>
+	<?php } ?>
+</ul><!-- close .social-buttons -->

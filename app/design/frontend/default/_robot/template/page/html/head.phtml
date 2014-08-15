@@ -1,0 +1,14 @@
+<head>
+    <meta charset="UTF-8" />
+	<title><?php echo($this->getForcedTitle())? $this->getForcedTitle(): $this->getTitle() ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+
+    <link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" />
+    <link rel="stylesheet" href="https://fast.fonts.net/cssapi/c0530f91-307e-4cf8-b8e9-7295c041d849.css" />
+    <?php echo $this->getCssJsHtml() ?>
+	<script async="async" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script async="async" src="<?php echo $this->getSkinUrl('js/lightbox-2.6.min.js') ?>"></script>
+    <script async="async" src="<?php echo $this->getSkinUrl('js/master.js') ?>"></script>
+    <!--[if lte IE 8]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script><![endif]-->
+</head>

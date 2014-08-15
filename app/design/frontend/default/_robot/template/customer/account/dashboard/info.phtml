@@ -1,0 +1,20 @@
+<div class="module-account-details">
+    <h3 class="heading">Contact details</h3>
+    <a href="<?php echo $this->getUrl('customer/account/edit') ?>"><?php echo $this->__('Edit') ?></a>
+    <?php echo $this->htmlEscape($this->getCustomer()->getName()) ?><br />
+    <?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?><br />
+    <a href="<?php echo $this->getChangePasswordUrl() ?>"><?php echo $this->__('Change Password') ?></a>
+</div><!-- close .module-account-details -->
+
+<?php if($this->isNewsletterEnabled()){ ?>
+	<div class="module-newsletters">
+		<p class="newsletter">
+        	<i class="icon-envelope icon-round"></i>
+			<?php if($this->getIsSubscribed()){ ?>
+				<span>You are currently subscribed to our newsletter. Emails will be sent to <?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?>.</span>
+            <?php } else { ?>
+                <a href="<?php echo $this->getUrl('newsletter/manage') ?>">Subscribe to our newsletter</a> to receive email updates.
+            <?php } ?>
+        </p>
+	</div><!-- close .module-newsletters -->
+<?php } ?>

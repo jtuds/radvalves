@@ -1,0 +1,2 @@
+<h3 class="heading">Payment method</h3>
+<p><?php echo Mage::getSingleton('checkout/session')->getQuote()->getPayment()->getMethodInstance()->getTitle(); ?><?php echo $this->getPaymentHtml() ?></p>

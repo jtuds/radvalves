@@ -1,0 +1,11 @@
+<?php if($_links = $this->getLinks()){ ?>
+	<div class="module-header-links">
+        <div class="window">
+            <ul class="header-links">
+                <?php $i = 0; foreach($_links as $_link): $i++; ?>
+                    <li><a href="<?php echo $_link->getUrl(); ?>"><?php echo $_link->getLabel(); ?></a></li>
+                <?php endforeach; ?>
+            </ul><!-- close .header-links -->
+        </div>
+	</div><!-- close .module-header-links -->
+<?php } ?>

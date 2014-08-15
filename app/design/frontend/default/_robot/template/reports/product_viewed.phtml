@@ -1,0 +1,59 @@
+<?php if($_products = $this->getRecentlyViewedProducts()){ ?>
+    <div class="module-products module-viewed-products">
+        <h2 class="heading">Recently viewed</h2>
+        <ul class="grid-offset products product-list">
+
+			<?php             
+            /**
+            * VARIABLES
+            */
+            $i = 0; foreach($_products as $_product): $i++;
+			$_store_ID						= Mage::app()->getStore()->getId();
+			$_products_collection			= $_product;
+        	$_product 						= Mage::getModel('catalog/product')->setStoreId($_store_ID)->load($_product->getId());
+			$_product_ID 					= $_product->getId();
+			$_product_url					= $_product->getProductUrl();
+			$_product_edit_url				= $_product->getConfigureUrl();
+			$_product_type					= $_product->getTypeId();
+			$_product_name					= $_product->getName();
+			$_product_short_description		= $_product->getShortDescription();
+			$_product_description			= $_product->getDescription();
+			$_product_image					= $this->helper('catalog/image')->init($_product,'thumbnail')->resize(420,280);
+			$_product_image_url				= Mage::getModel('catalog/product_media_config')->getMediaUrl($_product->getImage());
+			$_now							= date("Y-m-d H:m:s");
+			$_product_new_from_date			= $_product->getNewsFromDate();
+			$_product_new_to_date			= $_product->getNewsToDate();
+			$_product_starting_price		= $this->getPriceHtml($_products_collection, true);
+			$_product_regular_price			= $this->helper('core')->currency($_product->getPrice(),true,false);
+			$_product_final_price			= $this->helper('core')->currency($_product->getFinalPrice(),true,false);
+			$_product_rating				= Mage::getModel('review/review_summary')->setStoreId($_store_ID)->load($_product_ID)->getRatingSummary();
+			$_product_star_rating			= round($_product_rating / 20,1);
+			?>
+            
+                <li class="grid-col bp2-col-half bp3-col-full ie8-col-full">
+                    <div class="product-basic">
+                        <div class="product-image">
+                        	<a href="<?php echo $_product_url; ?>"><img src="<?php echo $_product_image; ?>" alt="<?php echo $_product_name; ?>" /></a>
+                        </div>
+                        <div class="product-details">
+                            <h3 class="product-name">
+                                <a href="<?php echo $_product_url; ?>"><?php echo $_product_name; ?></a>
+                                <span class="product-price-simple">&ndash; <?php echo $_product_starting_price; ?></span>
+                            </h3>
+							<?php if($_product_type !== 'grouped'){ ?>
+                                <div class="product-price">
+									<?php if($_product_final_price == $_product_regular_price){ ?>
+                                        <span class="price"><?php echo $_product_final_price; ?></span>
+                                    <?php } else { ?>
+                                        <span class="price-old"><?php echo $_product_regular_price; ?></span>
+                                        <span class="price-new"><?php echo $_product_final_price; ?></span>
+                                    <?php } ?>
+                                </div>
+                         	<?php } ?>
+                        </div>
+                    </div><!-- close .product-basic -->
+                </li><!-- close .grid-col -->
+            <?php endforeach; ?>
+        </ul><!-- close .products -->
+    </div><!-- close .module-viewed-products -->
+<?php } ?>

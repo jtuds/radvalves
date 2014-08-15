@@ -1,0 +1,7 @@
+<div class="header-logo">
+	<?php if($this->getIsHomePage()){ ?>
+    	<h1><img class="header-logo logo" src="<?php echo $this->getSkinUrl('assets/logo.png'); ?>" alt="Radvalves n' Radiators" /></h1>
+	<?php } else { ?>
+    	<a href="<?php echo $this->getUrl('') ?>"><img class="header-logo logo" src="<?php echo $this->getSkinUrl('assets/logo.png'); ?>" alt="Radvalves n' Radiators" /></a>
+	<?php } ?>
+</div><!-- close .module-logo -->

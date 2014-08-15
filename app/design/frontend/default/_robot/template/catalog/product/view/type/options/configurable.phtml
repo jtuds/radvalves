@@ -1,0 +1,21 @@
+<?php
+/**
+* VARIABLES
+*/
+$_product    					= $this->getProduct();
+$_attributes 					= Mage::helper('core')->decorateArray($this->getAllowAttributes());
+?>
+
+<?php if($_product->isSaleable() && count($_attributes)){ ?>
+	<?php $i = 0; foreach($_attributes as $_attribute): $i++; ?>
+        <div class="field field-select">
+            <label class="field-label required"><?php echo $_attribute->getLabel() ?></label>
+            <select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]" id="attribute<?php echo $_attribute->getAttributeId() ?>" class="input required-entry super-attribute-select">
+                <option></option>
+            </select>
+        </div>
+    <?php endforeach; ?>
+    <script type="text/javascript">
+        var spConfig = new Product.Config(<?php echo $this->getJsonConfig() ?>);
+	</script>
+<?php } ?>

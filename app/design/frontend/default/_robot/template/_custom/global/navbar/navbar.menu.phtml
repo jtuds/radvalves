@@ -1,0 +1,13 @@
+    <div class="module-navbar-menu">
+        <input type="checkbox" name="toggle-navbar-menu" id="toggle-navbar-menu">
+        <label for="toggle-navbar-menu" class="toggle">
+            <span class="text">Browse our products</span>
+            <i class="icon-reorder"></i>
+            <i class="icon-chevron-up"></i>
+        </label>
+        <div class="navbar-window window">
+            <ul class="navbar-menu clear">
+            	<li class="level0 nav-1"><a href="<?php echo $this->getUrl('') ?>"><i class="icon-home icon-alt"></i></a></li><li class="level0 nav-2"><a href="<?php echo Mage::getModel('catalog/category')->loadByAttribute('name', 'Thermostatic radiator valves')->getUrl(); ?>">Thermostatic <span class="break">radvalves</span></a></li><li class="level0 nav-3"><a href="<?php echo Mage::getModel('catalog/category')->loadByAttribute('name', 'Manual radiator valves')->getUrl(); ?>">Manual <span class="break">radvalves</span></a></li><li class="level0 nav-4"><a href="<?php echo Mage::getModel('catalog/category')->loadByAttribute('name', 'Designer radiators')->getUrl(); ?>"><span class="test">Designer <span class="break">radiators</span></span></a></li><li class="level0 nav-5"><a href="<?php echo Mage::getModel('catalog/category')->loadByAttribute('name', 'Towel rails')->getUrl(); ?>">Towel <span class="break">rails</span></a></li><li class="level0 nav-6"><a href="<?php echo Mage::getModel('catalog/category')->loadByAttribute('name', 'Electric elements')->getUrl(); ?>">Electric <span class="break">elements</span></a></li><li class="level0 nav-9"><a href="<?php echo Mage::getModel('catalog/category')->loadByAttribute('name', 'Offers')->getUrl(); ?>">Special <span class="break">offers</span></a></li><li class="level0 nav-7"><a href="<?php echo Mage::getModel('catalog/category')->loadByAttribute('name', 'Wet room / drainage')->getUrl(); ?>">Drainage <span class="break">kits</span></a></li><li class="level0 nav-8"><a href="<?php echo Mage::getModel('catalog/category')->loadByAttribute('name', 'Flush kits')->getUrl(); ?>">Flush <span class="break">kits</span></a></li>
+            </ul><!-- close .navbar-menu -->
+        </div>
+    </div><!-- close .module-navbar-menu -->

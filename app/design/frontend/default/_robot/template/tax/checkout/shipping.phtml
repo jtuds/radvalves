@@ -1,0 +1,11 @@
+<?php if($this->displayIncludeTax()){ ?>
+    <li class="delivery-total">
+        <span class="type">Delivery</span>
+        <span class="value"><?php echo strip_tags ($this->helper('checkout')->formatPrice($this->getShippingIncludeTax())) ?></span>
+    </li>
+<?php } else { ?>
+    <li class="delivery-total">
+        <span class="type">Delivery</span>
+        <span class="value"><?php echo strip_tags ($this->helper('checkout')->formatPrice($this->getShippingExcludeTax())) ?></span>
+    </li>
+<?php } ?>

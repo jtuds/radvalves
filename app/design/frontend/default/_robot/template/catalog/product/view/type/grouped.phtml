@@ -1,0 +1,185 @@
+<?php $this->setPreconfiguredValue(); ?>
+<?php $_product = $this->getProduct(); ?>
+<?php // $currentCategory = Mage::registry('current_category'); ?>
+<?php // if ($currentCategory) { $curID = $currentCategory->getId(); } ?>
+<?php $curID = Mage::registry('current_product')->getCategoryId(); ?>
+<?php $_associatedProducts = $this->getAssociatedProducts(); ?>
+<?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
+<?php echo $this->getChildHtml('product_type_data_extra') ?>
+<?php $attributeSetModel = Mage::getModel("eav/entity_attribute_set"); $attributeSetModel->load($_product->getAttributeSetId()); ?>
+<?php $attributeSetName = $attributeSetModel->getAttributeSetName(); ?>
+
+    <?php if($_hasAssociatedProducts){ ?>
+    	<?php if ($attributeSetName == 'Radiators') { ?>
+            <div class="grouped-products">
+                <table class="grouped-product-info">
+                    <thead>
+                        <tr class="head-row">
+                            <td>Code</td>
+                            <td>Size</td>
+                            <td>Weight (kg)</td>
+                            <td>Shape</td>
+                            <td>Heat Output Watts &Delta;t 60&deg;C</td>
+                            <td>Optional electrical element</td>
+                            <td>Finish</td>
+                            <td>Price</td>
+                            <td><label for="product_qty">Quantity required</label></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php $i = 0; foreach ($_associatedProducts as $_item): $i++; ?>
+                        <tr>
+                            <td><?php if($_item->getData('sku')) { echo $_item->getData('sku'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getData('size')) { echo $_item->getData('size'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getData('weight')) { echo $_item->getData('weight'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getAttributeText('shape')) { echo $_item->getAttributeText('shape'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getData('heat_output')) { echo $_item->getData('heat_output'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getData('optional_electrical_element')) { echo $_item->getData('optional_electrical_element'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getData('finish')) { echo $_item->getData('finish'); } else { echo "N/A"; } ?></td>
+                            <td id="item-price"><?php if($_item->getData('price')) { echo $this->getPriceHtml($_item, true); } else { echo "N/A"; } ?></td>
+                            <?php if($_product->isSaleable()){ ?>
+                                <?php if($_item->isSaleable()){ ?>
+                                    <td><input type="number" id="product_qty" name="super_group[<?php echo $_item->getId() ?>]" value="<?php echo $_item->getQty()*1 ?>" title="<?php echo $this->__('Qty') ?>" class="input qty" min="0" max="1000" /></td>
+                                <?php } else { ?>
+                                    <td><input type="number" id="product_qty" value="0" title="Qty" class="input qty disabled" disabled /></td>
+                                <?php } ?>
+                            <?php } ?>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+                </form>
+            </div>
+        <?php } elseif ($attributeSetName == 'Radvalves') { ?>
+        	<div class="grouped-products">
+                <table class="grouped-product-info">
+                    <thead>
+                        <tr class="head-row">
+                            <td>Code</td>
+                            <td>Weight (kg)</td>
+                            <td>Finish</td>
+                            <td>Price per pair</td>
+                            <td><label for="product_qty">Quantity required</label></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php $i = 0; foreach ($_associatedProducts as $_item): $i++; ?>
+                        <tr>
+                            <td><?php if($_item->getData('sku')) { echo $_item->getData('sku'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getData('weight')) { echo $_item->getData('weight'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getAttributeText('finish_2')) { echo $_item->getAttributeText('finish_2'); } else { echo "N/A"; } ?></td>
+                            <td id="item-price"><?php if($_item->getData('price')) { echo $this->getPriceHtml($_item, true); } else { echo "N/A"; } ?></td>
+                            <?php if($_product->isSaleable()){ ?>
+                                <?php if($_item->isSaleable()){ ?>
+                                    <td><input type="number" id="product_qty" name="super_group[<?php echo $_item->getId() ?>]" value="<?php echo $_item->getQty()*1 ?>" title="<?php echo $this->__('Qty') ?>" class="input qty" min="0" max="1000" /></td>
+                                <?php } else { ?>
+                                    <td><input type="number" id="product_qty" value="0" title="Qty" class="input qty disabled" disabled /></td>
+                                <?php } ?>
+                            <?php } ?>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+                </form>
+            </div>
+       	<?php } elseif ($attributeSetName == 'Drainage') { ?>
+        	<div class="grouped-products">
+                <table class="grouped-product-info">
+                    <thead>
+                        <tr class="head-row">
+                            <td>Code</td>
+                            <td>Size</td>
+                            <td>Price</td>
+                            <td><label for="product_qty">Quantity required</label></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php $i = 0; foreach ($_associatedProducts as $_item): $i++; ?>
+                        <tr>
+                            <td><?php if($_item->getData('sku')) { echo $_item->getData('sku'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getData('size')) { echo $_item->getData('size'); } else { echo "N/A"; } ?></td>
+                            <td id="item-price"><?php if($_item->getData('price')) { echo $this->getPriceHtml($_item, true); } else { echo "N/A"; } ?></td>
+                            <?php if($_product->isSaleable()){ ?>
+                                <?php if($_item->isSaleable()){ ?>
+                                    <td><input type="number" id="product_qty" name="super_group[<?php echo $_item->getId() ?>]" value="<?php echo $_item->getQty()*1 ?>" title="<?php echo $this->__('Qty') ?>" class="input qty" min="0" max="1000" /></td>
+                                <?php } else { ?>
+                                    <td><input type="number" id="product_qty" value="0" title="Qty" class="input qty disabled" disabled /></td>
+                                <?php } ?>
+                            <?php } ?>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+                </form>
+            </div>
+        <?php } elseif ($attributeSetName == 'Electric elements') { ?>
+        	<div class="grouped-products">
+                <table class="grouped-product-info">
+                    <thead>
+                        <tr class="head-row">
+                            <td>Code</td>
+                            <td>Output</td>
+                            <td>Voltage</td>
+                            <td>Finish</td>
+                            <td>Price</td>
+                            <td><label for="product_qty">Quantity required</label></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php $i = 0; foreach ($_associatedProducts as $_item): $i++; ?>
+                        <tr>
+                            <td><?php if($_item->getData('sku')) { echo $_item->getData('sku'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getData('output')) { echo $_item->getData('output'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getData('voltage')) { echo $_item->getData('voltage'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getData('finish')) { echo $_item->getData('finish'); } else { echo "N/A"; } ?></td>
+                            <td id="item-price"><?php if($_item->getData('price')) { echo $this->getPriceHtml($_item, true); } else { echo "N/A"; } ?></td>
+                            <?php if($_product->isSaleable()){ ?>
+                                <?php if($_item->isSaleable()){ ?>
+                                    <td><input type="number" id="product_qty" name="super_group[<?php echo $_item->getId() ?>]" value="<?php echo $_item->getQty()*1 ?>" title="<?php echo $this->__('Qty') ?>" class="input qty" min="0" max="1000" /></td>
+                                <?php } else { ?>
+                                    <td><input type="number" id="product_qty" value="0" title="Qty" class="input qty disabled" disabled /></td>
+                                <?php } ?>
+                            <?php } ?>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+                </form>
+            </div>
+       	<?php } else { ?>
+        	<div class="grouped-products">
+                <table class="grouped-product-info">
+                    <thead>
+                        <tr class="head-row">
+                            <td>Code</td>
+                            <td>Finish</td>
+                            <td>Size</td>
+                            <td>Price</td>
+                            <td><label for="product_qty">Quantity required</label></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php $i = 0; foreach ($_associatedProducts as $_item): $i++; ?>
+                        <tr>
+                            <td><?php if($_item->getData('sku')) { echo $_item->getData('sku'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getData('finish')) { echo $_item->getData('finish'); } else { echo "N/A"; } ?></td>
+                            <td><?php if($_item->getData('size')) { echo $_item->getData('size'); } else { echo "N/A"; } ?></td>
+                            <td id="item-price"><?php if($_item->getData('price')) { echo $this->getPriceHtml($_item, true); } else { echo "N/A"; } ?></td>
+                            <?php if($_product->isSaleable()){ ?>
+                                <?php if($_item->isSaleable()){ ?>
+                                    <td><input type="number" id="product_qty" name="super_group[<?php echo $_item->getId() ?>]" value="<?php echo $_item->getQty()*1 ?>" title="<?php echo $this->__('Qty') ?>" class="input qty" min="0" max="1000" /></td>
+                                <?php } else { ?>
+                                    <td><input type="number" id="product_qty" value="0" title="Qty" class="input qty disabled" disabled /></td>
+                                <?php } ?>
+                            <?php } ?>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+                </form>
+            </div>
+       	<?php } ?>
+        <div class="total-updater">Total: £<span id="integer">0.00</span></div>
+    <?php } else { ?>
+       <p>No options are available.</p>
+    <?php } ?>

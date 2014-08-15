@@ -1,0 +1,13 @@
+<div class="module-top-products module-pre-footer-top-products">
+	<h2 class="heading-alt-large">Top products</h2>
+    	<ul class="top-products-list">
+<?php $_top_products = Mage::getResourceModel('reports/product_collection')->addViewsCount()->setOrder('views', 'desc')->setPageSize(7)->addAttributeToSelect('name'); ?>
+<?php foreach($_top_products as $_top_product):
+		$_top_product_name = $_top_product->getName();
+		$_top_product_url = $_top_product->getProductUrl();
+?>
+			<li>
+            	<a class="top-products-item" href="<?php echo $_top_product_url; ?>"><?php echo $_top_product_name; ?></a>
+          	</li>
+<?php endforeach; ?>
+</div><!-- close .module-pre-footer-top-products -->

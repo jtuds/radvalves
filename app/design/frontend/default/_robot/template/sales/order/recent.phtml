@@ -1,0 +1,30 @@
+<div class="module-account-orders">
+	<h2 class="heading">Recent orders</h2>
+	<?php $_orders = $this->getOrders(); ?>
+    <?php if(sizeof($_orders->getItems()) > 0 ){ ?>
+    	<ol class="orders-list">
+			<?php foreach ($_orders as $_order): ?>
+                <li>
+                    <?php $_order_date = explode(" ",$_order->getCreatedAtStoreDate()); ?>
+                    <div class="order-date date-box">
+						<span class="month"><?php echo $_order_date[1]; ?></span>
+						<span class="date"><?php echo $_order_date[0]; ?></span>
+                    </div>
+                    <div class="order-details">
+                        <div class="order-id"><?php echo $_order->getRealOrderId() ?></div>
+                        <div class="order-recipient"><?php echo $_order->getShippingAddress() ? $this->htmlEscape($_order->getShippingAddress()->getName()) : '&nbsp;' ?></div>
+                        <div class="order-status"><?php echo $_order->getStatusLabel() ?></div>
+                    </div>
+                    <div class="order-total">
+                        <span><?php echo $_order->formatPrice($_order->getGrandTotal()) ?></span>
+                    </div>
+                    <div class="order-view-button">
+                        <a href="<?php echo $this->getViewUrl($_order) ?>">View order details</a>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+    	</ol><!-- close .orders-list -->
+    <?php } else { ?>
+        <p>You haven't placed an order yet.</p>
+    <?php } ?>
+</div><!-- close .module-account-orders -->

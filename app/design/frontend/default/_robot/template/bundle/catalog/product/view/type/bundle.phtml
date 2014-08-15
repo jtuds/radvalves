@@ -1,0 +1,9 @@
+<?php if($this->getProduct()->isSaleable()): ?>
+<script type="text/javascript">
+//<![CDATA[
+    var bundle = new Product.Bundle(<?php echo $this->getJsonConfig() ?>);
+//]]>
+</script>
+<?php endif; ?>
+
+<?php echo $this->getChildHtml('bundle_prices') ?>

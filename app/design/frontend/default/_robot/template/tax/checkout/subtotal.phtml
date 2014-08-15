@@ -1,0 +1,5 @@
+<?php $no_of_items		= $this->helper('checkout/cart')->getSummaryCount();?>
+<li class="subtotal">
+    <span class="type">Subtotal <?php if ($no_of_items == 1) { ?>(1 item)<?php } elseif ($no_of_items == 0) { ?>(0 items)<?php } else { ?>(<?php echo $no_of_items; ?> items)<?php } ?></span>
+    <span class="value"><?php echo strip_tags ($this->helper('checkout')->formatPrice($this->getTotal()->getValue())) ?></span>
+</li>

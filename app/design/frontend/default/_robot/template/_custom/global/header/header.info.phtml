@@ -1,0 +1,23 @@
+<ul class="module-header-info clear">
+	<div class="module-info-box module-header-info-box module-info-box-contact-search">
+    	<li class="info-box-item">
+            <a href="tel:+44161123456" class="info-tel button-icon">
+                <span class="tel-digits">0161 123 456</span>
+                <i class="icon-phone-sign"></i>
+            </a>
+        </li>
+        <span class="info-box-divide">/</span>
+        <li class="info-box-item">
+            <a href="mailto:hello@robotcreative.co.uk" class="info-email info-header button-icon">
+                <span class="info-email-text">Email us</span>
+                <i class="icon-envelope-alt"></i>
+            </a>
+        </li>
+        <li class="info-search-box-item info-box-item">
+        	<form action="<?php echo $this->helper('catalogsearch')->getResultUrl() ?>" method="get" class="form" role="form">
+                <input type="text" name="<?php echo $this->helper('catalogsearch')->getQueryParamName() ?>" placeholder="Search products" class="field info-search info-header">
+                <button type="submit" class="button button-icon"><i class="icon-search"></i></button>
+            </form>
+      	</li>
+  	</div><!-- close .module-info-box .module-header-info-box -->
+</ul><!-- close .contact-details -->

@@ -1,0 +1,28 @@
+<div class="field field-dob clear">
+    <label for="<?php echo $this->getFieldId('month')?>" class="field-label<?php if ($this->isRequired()){ ?> required<?php } ?>">Date of birth</label>
+	<?php $this->setDateInput('d',
+        '<div class="field-dob-day">
+             <input type="text" id="'.$this->getFieldId('day').'" name="'.$this->getFieldName('day').'" value="'.$this->getDay().'" class="input validate-custom" '.$this->getFieldParams().' placeholder="DD" />
+         </div>'
+    );
+    $this->setDateInput('m',
+        '<div class="field-dob-month">
+             <input type="text" id="'.$this->getFieldId('month').'" name="'.$this->getFieldName('month').'" value="'.$this->getMonth().'" class="input validate-custom" '.$this->getFieldParams().' placeholder="MM" />
+         </div>'
+    );
+    $this->setDateInput('y',
+        '<div class="field-dob-year">
+             <input type="text" id="'.$this->getFieldId('year').'" name="'.$this->getFieldName('year').'" value="'.$this->getYear().'" class="input validate-custom" '.$this->getFieldParams().' placeholder="YYYY" />
+         </div>'
+    ); ?>
+    <?php echo $this->getSortedDateInputs() ?>
+    <div class="dob-full" style="display:none;">
+        <input type="hidden" id="<?php echo $this->getFieldId('dob')?>" name="<?php echo $this->getFieldName('dob')?>" />
+    </div>
+    <div class="validation-advice" style="display:none;"></div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    var customer_dob = new Varien.DOB('.customer-dob', <?php echo $this->isRequired() ? 'true' : 'false' ?>, '<?php echo $this->getDateFormat() ?>');
+//]]>
+</script>

@@ -1,0 +1,21 @@
+<div class="module-address-book">
+	<h2 class="heading">Default addresses</h2>
+    <ul class="grid-offset address-book">
+    	<li class="grid-col bp2-col-half ie8-col-half">
+			<div class="address-entry">
+                <i class="icon-map-marker"></i>
+				<span class="address-type">Default billing address</span>
+                <address><?php echo $this->getPrimaryBillingAddressHtml() ?></address>
+                <a href="<?php echo $this->getPrimaryBillingAddressEditUrl() ?>">Edit billing address</a>
+        	</div>
+        </li><!-- close .grid-col -->
+    	<li class="grid-col bp2-col-half ie8-col-half">
+			<div class="address-entry">
+                <i class="icon-map-marker"></i>
+				<span class="address-type">Default delivery address</span>
+                <address><?php echo $this->getPrimaryShippingAddressHtml() ?></address>
+                <a href="<?php echo $this->getPrimaryShippingAddressEditUrl() ?>">Edit delivery address</a>
+        	</div>
+        </li><!-- close .grid-col -->
+    </ul><!-- close .grid-offset -->
+</div><!-- close .module-address-book -->

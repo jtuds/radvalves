@@ -1,0 +1,10 @@
+<?php if($_links = $this->getLinks()){ ?>
+	<div class="module-footer-links">
+        <h2 class="heading">My account</h2>
+        <ul class="footer-links">
+            <?php $i = 0; foreach($_links as $_link): $i++; ?>
+                <li><a href="<?php echo $_link->getUrl(); ?>"><?php echo $_link->getLabel(); ?></a></li>
+            <?php endforeach; ?>
+        </ul><!-- close .footer-links -->
+	</div><!-- close .module-footer-links -->
+<?php } ?>

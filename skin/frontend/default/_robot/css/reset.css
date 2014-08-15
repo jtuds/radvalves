@@ -1,0 +1,59 @@
+
+/*
+Theme name:		CSS reset
+Version:		1.0 
+Author:			Chris Cairns
+Author URI:		http://www.robotcreative.co.uk
+*/
+
+
+html, body {
+	height:100%;
+}
+html, body, div, span, applet, object, iframe,
+article, aside, details, figcaption, figure, footer, header, hgroup, img, menu, nav, section,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+dl, dt, dd, ol, ul, li,
+button, fieldset, form, input, label, legend, select, textarea,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	border:0;
+	margin:0;
+	padding:0;
+}
+body {
+	font-size:1em;
+	line-height:1;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, img, menu, nav, section {
+	display:block;
+}
+h1, h2, h3, h4, h5, h6, p, address {
+	font-size:1em;
+	font-style:normal;
+	font-weight:normal;
+}
+dd, dl, dt, li, ol, ul {
+	list-style:none;
+}
+input, select, textarea, button {
+	font-family:sans-serif;
+}
+input[type='radio'], input[type='checkbox'] {
+	display:inline-block;
+}
+textarea {
+	display:block;
+	resize:none;
+}
+table, tbody, tfoot, thead, td, th, tr {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+.clear:after {
+	clear:both;
+	content:'';
+	display:table;
+}
+.clear {
+	zoom:1;
+}

@@ -1,0 +1,118 @@
+<?php
+/**
+* VARIABLES
+*/
+$_item							= $this->getItem();
+$isVisibleProduct 				= $_item->getProduct()->isVisibleInSiteVisibility();
+$canApplyMsrp 					= Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage_Catalog_Model_Product_Attribute_Source_Msrp_Type::TYPE_BEFORE_ORDER_CONFIRM);
+
+$_store_ID						= Mage::app()->getStore()->getId();
+$_product						= $this->getProduct();
+$_product_ID 					= $_product->getId();
+$_product_url					= $_product->getProductUrl();
+$_product_edit_url				= $_product->getConfigureUrl();
+$_product_type					= $_product->getTypeId();
+$_product_name					= $_product->getName();
+$_product_short_description		= $_product->getShortDescription();
+$_product_description			= $_product->getDescription();
+$_product_image					= $this->helper('catalog/image')->init($_product,'thumbnail')->resize(420,280);
+$_product_image_url				= Mage::getModel('catalog/product_media_config')->getMediaUrl($_product->getImage());
+$_now							= date("Y-m-d H:m:s");
+$_product_new_from_date			= $_product->getNewsFromDate();
+$_product_new_to_date			= $_product->getNewsToDate();
+$_product_regular_price			= $this->helper('core')->currency($_product->getPrice(),true,false);
+$_product_final_price			= $this->helper('core')->currency($_product->getFinalPrice(),true,false);
+$_product_rating				= Mage::getModel('review/review_summary')->setStoreId($_store_ID)->load($_product_ID)->getRatingSummary();
+$_product_star_rating			= round($_product_rating / 20,1);
+?>
+
+<li>
+    <div class="product-details">
+		<h2 class="product-name">
+			<?php echo $_product_name; ?>
+        </h2>
+    	<div class="product-price"> 
+        
+			<?php if ($canApplyMsrp): ?>
+        
+                <span class="map-cart-sidebar-item"><?php echo $this->__('See price before order confirmation.'); ?></span>
+        
+            <?php else: ?>
+        
+				<?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                    <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+                        <?php echo $this->__('Excl. Tax'); ?>:
+                    <?php endif; ?>
+                    <?php if (Mage::helper('weee')->typeOfDisplay($_item, array(0, 1, 4), 'sales')): ?>
+                        <?php echo $this->helper('checkout')->formatPrice($_item->getCalculationPrice()+$_item->getWeeeTaxAppliedAmount()+$_item->getWeeeTaxDisposition()); ?>
+                    <?php else: ?>
+                        <?php echo $this->helper('checkout')->formatPrice($_item->getCalculationPrice()) ?>
+                    <?php endif; ?>
+                    <?php if (Mage::helper('weee')->getApplied($_item)): ?>
+                        <br />
+                        <?php if (Mage::helper('weee')->typeOfDisplay($_item, 1, 'sales')): ?>
+                            <small>
+                            <?php foreach (Mage::helper('weee')->getApplied($_item) as $tax): ?>
+                                <span class="nobr"><?php echo $tax['title']; ?>: <?php echo Mage::helper('checkout')->formatPrice($tax['amount'],true,true); ?></span><br />
+                            <?php endforeach; ?>
+                            </small>
+                        <?php elseif (Mage::helper('weee')->typeOfDisplay($_item, 2, 'sales')): ?>
+                            <?php foreach (Mage::helper('weee')->getApplied($_item) as $tax): ?>
+                                <span class="nobr"><small><?php echo $tax['title']; ?>: <?php echo Mage::helper('checkout')->formatPrice($tax['amount_incl_tax'],true,true); ?></small></span><br />
+                            <?php endforeach; ?>
+                        <?php elseif (Mage::helper('weee')->typeOfDisplay($_item, 4, 'sales')): ?>
+                            <small>
+                            <?php foreach (Mage::helper('weee')->getApplied($_item) as $tax): ?>
+                                <span class="nobr"><?php echo $tax['title']; ?>: <?php echo Mage::helper('checkout')->formatPrice($tax['amount_incl_tax'],true,true); ?></span><br />
+                            <?php endforeach; ?>
+                            </small>
+                        <?php endif; ?>
+                        <?php if (Mage::helper('weee')->typeOfDisplay($_item, 2, 'sales')): ?>
+                            <span class="nobr"><?php echo Mage::helper('weee')->__('Total'); ?>:<br /> <?php echo $this->helper('checkout')->formatPrice($_item->getCalculationPrice()+$_item->getWeeeTaxAppliedAmount()+$_item->getWeeeTaxDisposition()); ?></span>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+            
+            
+            
+                <?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                    <?php $_incl = $this->helper('checkout')->getPriceInclTax($_item); ?>
+                    <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+                        <br /><?php echo $this->__('Incl. Tax'); ?>:
+                    <?php endif; ?>
+                    <?php if (Mage::helper('weee')->typeOfDisplay($_item, array(0, 1, 4), 'sales')): ?>
+                        <?php echo $this->helper('checkout')->formatPrice($_incl+$_item->getWeeeTaxAppliedAmount()); ?>
+                    <?php else: ?>
+                        <?php echo $this->helper('checkout')->formatPrice($_incl-$_item->getWeeeTaxDisposition()) ?>
+                    <?php endif; ?>
+                    <?php if (Mage::helper('weee')->getApplied($_item)): ?>
+                        <br />
+                        <?php if (Mage::helper('weee')->typeOfDisplay($_item, 1, 'sales')): ?>
+                            <small>
+                            <?php foreach (Mage::helper('weee')->getApplied($_item) as $tax): ?>
+                                <span class="nobr"><?php echo $tax['title']; ?>: <?php echo Mage::helper('checkout')->formatPrice($tax['amount'],true,true); ?></span><br />
+                            <?php endforeach; ?>
+                            </small>
+                        <?php elseif (Mage::helper('weee')->typeOfDisplay($_item, 2, 'sales')): ?>
+                            <?php foreach (Mage::helper('weee')->getApplied($_item) as $tax): ?>
+                                <span class="nobr"><small><?php echo $tax['title']; ?>: <?php echo Mage::helper('checkout')->formatPrice($tax['amount_incl_tax'],true,true); ?></small></span><br />
+                            <?php endforeach; ?>
+                        <?php elseif (Mage::helper('weee')->typeOfDisplay($_item, 4, 'sales')): ?>
+                            <small>
+                            <?php foreach (Mage::helper('weee')->getApplied($_item) as $tax): ?>
+                                <span class="nobr"><?php echo $tax['title']; ?>: <?php echo Mage::helper('checkout')->formatPrice($tax['amount_incl_tax'],true,true); ?></span><br />
+                            <?php endforeach; ?>
+                            </small>
+                        <?php endif; ?>
+                        <?php if (Mage::helper('weee')->typeOfDisplay($_item, 2, 'sales')): ?>
+                            <span class="nobr"><?php echo Mage::helper('weee')->__('Total incl. tax'); ?>:<br /> <?php echo $this->helper('checkout')->formatPrice($_incl+$_item->getWeeeTaxAppliedAmount()); ?></span>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+        
+            <?php endif; //Can apply MSRP ?>
+
+        </div>
+		<div class="product-quantity"><span>Quantity:</span> <?php echo $this->getQty() ?></div>
+    </div>
+</li>

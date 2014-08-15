@@ -1,0 +1,36 @@
+<div class="module-checkout">
+	<script type="text/javascript" src="<?php echo $this->getJsUrl('varien/accordion.js') ?>"></script>
+    <script type="text/javascript" src="<?php echo $this->getSkinUrl('js/opcheckout.js') ?>"></script>
+    
+    <ol class="checkout" id="checkoutSteps">
+		<?php $i = 0; foreach($this->getSteps() as $_stepId => $_stepInfo): $i++; ?>
+			<?php if(!$this->getChild($_stepId) || !$this->getChild($_stepId)->isShow()){ continue; } ?>
+            <li class="checkout-step section<?php echo !empty($_stepInfo['allow'])?' allow':'' ?><?php echo !empty($_stepInfo['complete'])?' saved':'' ?>" id="opc-<?php echo $_stepId ?>">
+                <div class="checkout-step-title step-title">
+					<?php if ($_stepInfo['label'] == 'Checkout Method'){ $_step_title = 'Begin secure checkout'; } elseif($_stepInfo['label'] == 'Billing Information'){ $_step_title = 'Billing address'; } elseif ($_stepInfo['label'] == 'Shipping Information'){ $_step_title = 'Delivery address'; } elseif($_stepInfo['label'] == 'Shipping Method'){ $_step_title = 'Delivery method'; } elseif ($_stepInfo['label'] == 'Payment Information'){ $_step_title = 'Payment method'; } elseif ($_stepInfo['label'] == 'Order Review') { $_step_title = 'Review your order'; } ?>
+                    <a href="#" class="checkout-step-button">
+						<span class="text"><?php echo $_step_title; ?></span>
+                        <i class="icon-pencil"></i>
+                        <i class="icon-ok-sign"></i>
+                    </a>
+                </div>
+                <div class="checkout-step-fields a-item" id="checkout-step-<?php echo $_stepId ?>" style="display:none;">
+                    <?php echo $this->getChildHtml($_stepId) ?>
+                </div>
+            </li>
+        <?php endforeach ?>
+    </ol>
+    
+	<script type="text/javascript">
+    //<![CDATA[
+        var accordion = new Accordion('checkoutSteps', '.step-title', true);
+        <?php if($this->getActiveStep()){ ?>accordion.openSection('opc-<?php echo $this->getActiveStep() ?>');<?php } ?>
+        var checkout = new Checkout(accordion,{
+            progress: '<?php echo $this->getUrl('checkout/onepage/progress') ?>',
+            review: '<?php echo $this->getUrl('checkout/onepage/review') ?>',
+            saveMethod: '<?php echo $this->getUrl('checkout/onepage/saveMethod') ?>',
+            failure: '<?php echo $this->getUrl('checkout/cart') ?>'}
+        );
+    //]]>
+    </script>
+</div><!-- close .module-checkout -->

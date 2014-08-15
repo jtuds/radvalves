@@ -1,0 +1,291 @@
+/*==================================================================================================
+1.		480 AND UP
+==================================================================================================*/
+
+@media screen and (min-width:481px){	
+
+	.product-list .product-basic {
+		min-height:120px;
+		padding-left:200px;
+	}
+	.product-list .product-basic .product-icon-new {
+		left:0;
+		margin:-10px 0 0 -10px;
+		right:auto;
+		z-index:9;
+	}
+	.product-list .product-basic .product-image {
+		left:0;
+		padding:10px;
+		position:absolute;
+		top:0;
+		width:180px;
+	}
+	.toolbar-options {
+		padding:0;
+	}
+	.toolbar-options .toolbar-option {
+		width:25%;
+	}
+	.toolbar-options .grid-view,
+	.toolbar-options .list-view {
+		position:static;
+	}
+	.toolbar-options .grid-view .control,
+	.toolbar-options .list-view .control {
+		margin:0 2px;
+	}
+	.toolbar-options .grid-view .control .text,
+	.toolbar-options .list-view .control .text {
+		display:inline;
+	}
+	.product-full .product-summary {
+		position:relative;
+	}
+	.product-full .product-summary .page-title {
+		padding-right:90px;
+	}
+	.product-full .product-summary .product-no-rating,
+	.product-full .product-summary .product-rating {
+		display:block;
+		margin-top:4px;
+		position:absolute;
+		right:0;
+		top:0;
+	}
+	.product-full .product-buttons .social-buttons {
+		margin:0;
+		float:right;
+	}
+	.product-full .product-buttons .social-buttons li {
+		margin:0 0 0 5px;
+	}
+	.form-product-options .button-important,
+	.form-product-options .button-link {
+		float:left;
+	}
+	.form-product-options .button-important {
+		font:14px/18px 'Proxima N W15 XBold';
+		margin-bottom:0;
+		padding:12px 15px;
+		width:auto;
+	}
+	
+}
+
+
+/*==================================================================================================
+2.		720 AND UP
+==================================================================================================*/
+
+@media screen and (min-width:721px) {
+	
+	.product-list .product-basic {
+		min-height:160px;
+		padding-left:260px;
+	}
+	.product-list .product-basic .product-image {
+		width:240px;
+	}
+	.panel-topbar {
+		padding:10px 0;
+	}
+	.info-tel i, .info-email i {
+	display:none;
+	}
+	.module-header-links {
+		padding-bottom:0;
+	}
+	.module-header-links .toggle {
+		display:none;
+	}
+	.module-navbar-menu .toggle {
+		display:none;
+	}
+	.module-header-links .window {
+		height:auto;
+	}
+	.module-header-basket .basket {
+		border-radius:15px;
+		margin-top:55px;
+		padding:15px;
+	}
+	.module-header-basket .basket .button-icon {
+		left:0;
+	}
+	.module-header-basket .basket-empty {
+		margin-top:65px;
+	}
+	.module-navbar-menu input[name="toggle-navbar-menu"]:checked ~ .toggle {
+		border-bottom-width:3px;
+		padding-bottom:7px;
+	}
+	.navbar-menu {
+		padding-top:0;
+	}
+	.product-full .product-summary .page-title {
+		padding-right:130px;
+	}
+	.product-full .product-summary .product-no-rating,
+	.product-full .product-summary .product-rating,
+	.product-full .product-summary .product-star-rating {
+		background-image:url(../assets/sprite-stars-20px.png);
+		height:24px;
+		width:120px;
+	}
+	.product-full .product-summary .product-rating {
+		background-position:left -24px;
+		margin-top:2px;
+	}
+	.product-full .product-summary .product-star-rating {
+		background-position:left -48px;
+	}
+	.product-full .product-gallery .product-icon-new {
+		left:0;
+		margin:-10px 0 0 -10px;
+		right:auto;
+		z-index:9;
+	}
+	.basket-full .form-buttons .update-basket,
+	.basket-full .form-buttons .empty-basket {
+		float:left;
+		margin:0 10px 0 0;
+		padding:0;
+		width:auto;
+	}
+	.basket-full .form-buttons .continue-shopping {
+		float:right;
+	}
+	.basket-full .form-buttons .button {
+		padding:7px 10px;
+	}
+	
+}
+
+
+/*==================================================================================================
+3.		960 AND UP
+==================================================================================================*/
+
+@media scrren and (min-width:961px) {
+	
+	.container {
+		margin-bottom:-180px;
+		min-height:100%;
+	}
+	.push {
+		height:180px;
+	}
+	.panel-footer {
+		height:140px;
+	}
+	.module-topbar-contact-details,
+	.module-navbar-menu,
+	.module-navbar-search {
+		margin:0;
+	}
+	.module-topbar-contact-details .contact-details li {
+		width:auto;
+	}
+	.module-topbar-contact-details .contact-details .detail .detail-short {
+		display:none;
+	}
+	.module-topbar-contact-details .contact-details .detail .detail-full {
+		display:block;
+	}
+	.logo-text {
+		text-align:left;
+	}
+	.module-navbar-menu .window {
+		height:auto;
+		margin:0;
+	}
+	.navbar-menu {
+		background-color:transparent;
+		padding:0;
+	}
+	.form-navbar-search {
+		margin:0;
+	}
+	.module-home-blog .blog-posts .post {
+		position:relative;
+	}
+	.module-home-blog .blog-posts .post-image {
+		display:block;
+	}
+	.module-home-blog .blog-posts .post-data {
+		min-height:0;
+		padding:0;
+		position:static;
+	}
+	.module-home-blog .blog-posts .post-date {
+		left:auto;
+		margin:5px;
+		right:0;
+	}
+	.module-copyright {
+		background-position:right bottom;
+		padding-top:0;
+	}
+	.module-copyright p {
+		text-align:right;
+	}
+	.page-isolated-checkout .container {
+		margin-bottom:0;
+		min-height:0;
+	}
+	.page-isolated-checkout .push {
+		height:0;
+	}
+	.page-isolated-checkout .panel-footer {
+		height:auto;
+	}
+	.page-isolated-checkout .module-checkout {
+		border-bottom:1px solid #FFF;
+		box-shadow:inset 0 -1px 2px -1px #d3c7a7;
+	}
+	.page-isolated-checkout .module-copyright {
+		background-position:right top;
+	}
+	.page-isolated-checkout .module-copyright p {
+		padding-right:240px;
+		text-align:left;
+	}
+	.form-delivery-method .fieldset {
+		float:left;
+		width:50%;
+	}
+	.form-delivery-method .checkout-gift-message {
+		float:right;
+		width:50%;
+	}
+	.newsletter {
+		padding:15px 15px 15px 25px;
+		text-align:left;
+	}
+	.newsletter i[class*="icon"] {
+		left:0;
+	}
+
+}
+
+
+/*==================================================================================================
+4.		1200 AND UP
+==================================================================================================*/
+
+@media screen and (min-width:1201px){
+	
+	.toolbar-count,
+	.toolbar-options {
+		float:left;
+		width:30%;
+	}
+	.toolbar-options {
+		width:70%;
+	}
+	.toolbar-count p {
+		margin-bottom:0;	
+	}
+	
+}

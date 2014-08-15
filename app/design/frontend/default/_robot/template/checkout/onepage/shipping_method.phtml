@@ -1,0 +1,21 @@
+<form id="co-shipping-method-form" action="" class="form form-delivery-method clear">
+    <div class="fieldset" id="checkout-shipping-method-load">
+        <?php echo $this->getChildHtml('available') ?>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+        var shippingMethod = new ShippingMethod('co-shipping-method-form', "<?php echo $this->getUrl('checkout/onepage/saveShippingMethod') ?>");
+    //]]>
+    </script>
+    <div class="checkout-gift-message" id="onepage-checkout-shipping-method-additional-load">
+        <?php echo $this->getChildHtml('additional') ?>
+    </div>
+    <div id="shipping-method-buttons-container" class="checkout-continue-button">
+        <button type="button" class="button" onclick="shippingMethod.save()">
+            <span class="text">Continue</span>
+        </button>
+    </div>
+    <div id="shipping-method-please-wait" class="checkout-wait" style="display:none;">
+    	<p>Please wait...</p>
+    </div>
+</form><!-- close .form-delivery-method -->

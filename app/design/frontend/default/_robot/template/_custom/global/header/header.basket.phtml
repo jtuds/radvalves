@@ -1,0 +1,36 @@
+<?php 
+/**
+* VARIABLES
+*/
+$_basket						= Mage::helper('checkout/cart');
+$_basket_url					= Mage::getUrl('checkout/cart');
+$_checkout_url					= Mage::getURL('checkout/onepage');
+$_basket_items_count			= $_basket->getSummaryCount();
+$_checkout						= Mage::helper('checkout');
+$_checkout_subtotal				= $_checkout->formatPrice(Mage::getSingleton('checkout/cart')->getQuote()->getSubtotal());
+?>
+
+<div class="module-info-box module-header-info-box .module-info-box-basket">
+    <div class="basket<?php if($_basket_items_count == 0){ ?> basket-empty<?php } ?>">
+        <a href="<?php echo $_basket_url; ?>" class="button-icon">
+            <span class="hide-text">View your basket</span>
+            <i class="icon-shopping-cart"></i>
+        </a>
+        <p class="basket-header info-box-item info-header">Basket:</p>
+        <div class="basket-items-count info-box-item info-header">
+            <?php if($_basket_items_count == 1){ ?>
+                <p>1 item &mdash; <?php echo strip_tags($_checkout_subtotal); ?></p>
+            <?php } elseif($_basket_items_count == 0) { ?>
+                <p>0 items &mdash; <?php echo strip_tags($_checkout_subtotal); ?></p>
+            <?php } else { ?>
+            	<p><?php echo $_basket_items_count; ?> items &mdash; <?php echo strip_tags($_checkout_subtotal); ?></p>
+           	<?php } ?>
+        </div><!-- close .basket-items-count -->
+    </div><!-- close .basket -->
+    <div class="basket-links">
+    	<?php echo $this->getChildHtml('header.links') ?>
+    </div><!-- close .basket-links -->
+</div><!-- close .module-info-box .module-header-info-box -->
+<!-- <a href="<?php echo $_basket_url; ?>" class="basket-link">View basket</a>
+        <?php if($_basket_items_count != 0){ ?><a href="<?php echo $_checkout_url; ?>" class="basket-link">Checkout</a><?php } ?>
+        <a href -->

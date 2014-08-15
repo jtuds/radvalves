@@ -1,0 +1,4 @@
+<li class="discount">
+	<span class="type"><?php echo $this->escapeHtml($this->getTotal()->getTitle()); ?></span>
+    <span class="value"><?php echo strip_tags ($this->helper('checkout')->formatPrice($this->getTotal()->getValue())) ?></span>
+</li>

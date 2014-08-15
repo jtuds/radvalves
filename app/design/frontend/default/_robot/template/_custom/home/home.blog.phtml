@@ -1,0 +1,26 @@
+<?php if($_posts = $this->getPosts()){ ?>
+	<div class="module-blog module-home-blog">
+   		<h2 class="heading-large">News</h2>
+        <ul class="grid-offset blog-posts">
+            <?php $i = 0; foreach($_posts as $_post): $i++; ?>
+                <li class="grid-col bp3-col-1thr ie8-col-1thr">
+                    <div class="post">
+                    	<div class="post-image">
+                        	<a href="<?php echo $_post->getPermalink(); ?>"><img src="http://placehold.it/420x210/FFF/333" /></a>
+                        </div>
+                        <div class="post-data">
+                            <h3 class="post-title">
+                                <a href="<?php echo $_post->getPermalink(); ?>"><?php echo $_post->getPostTitle(); ?></a>
+                            </h3>
+                            <p><?php echo $_post->getPostExcerpt(); ?></p>
+                            <div class="post-date date-box">
+                                <span class="month"><?php echo $_post->getPostDate('M'); ?></span>
+                                <span class="date"><?php echo $_post->getPostDate('j'); ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </li><!-- close .grid-col -->
+            <?php endforeach; ?>
+        </ul><!-- close .blog-posts -->
+    </div><!-- close .module-home-blog -->
+<?php } ?>

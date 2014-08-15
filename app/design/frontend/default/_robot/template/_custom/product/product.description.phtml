@@ -1,0 +1,6 @@
+<div class="module-content module-product-description">
+	<h2 class="heading"><?php echo $this->getProduct()->getName(); ?> technical data</h2>
+    <?php if($_product_description = $this->getProduct()->getDescription()){ ?>
+        <p><?php echo $_product_description; ?></p>
+	<?php } ?>
+</div><!-- close .module-product-description -->

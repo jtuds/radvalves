@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en-GB" class="ie9 ie8 ie7"><![endif]-->
+<!--[if IE 8]><html lang="en-GB" class="ie9 ie8"><![endif]-->
+<!--[if IE 9]><html lang="en-GB" class="ie9"><![endif]-->
+<!--[if !IE]><!--><html lang="en-GB"><!--<![endif]-->
+<?php echo $this->getChildHtml('head') ?>
+<body class="page-isolated-checkout">
+<div class="container">
+
+    <?php echo $this->getChildHtml('header') ?>
+    
+    <div class="grid-panel panel-main" role="main">
+		<div class="grid-row">
+            <div class="grid-col bp3-col18 bp3-offset3 bp4-col16 bp4-offset4 ie8-col18 ie8-offset3">
+                <?php echo $this->getChildHtml('content') ?>
+            </div><!-- close .grid-col -->
+        </div><!-- close .grid-row -->
+    </div><!-- close .grid-panel -->
+    
+    <div class="push"></div>
+</div><!-- close .container -->
+<?php echo $this->getChildHtml('footer') ?>
+</body>
+</html>

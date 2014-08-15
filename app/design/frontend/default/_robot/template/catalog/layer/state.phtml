@@ -1,0 +1,9 @@
+<?php $_filters = $this->getActiveFilters() ?>
+<?php if(!empty($_filters)): ?>
+	<div class="filter-type">Current filter(s)</div>
+	<ul class="filter-current">
+		<?php foreach ($_filters as $_filter): ?>
+            <li><?php echo $this->__($_filter->getName()) ?>: <?php echo $this->stripTags($_filter->getLabel()) ?> <a href="<?php echo $_filter->getRemoveUrl() ?>">[X]</a></li>
+		<?php endforeach; ?>
+    </ul><!-- close .filter-current -->
+<?php endif; ?>

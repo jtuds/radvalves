@@ -1,0 +1,102 @@
+<?php $_product = $this->getProduct(); ?>
+<div class="module-product-full">
+    <?php echo $this->getChildHtml('product.summary') ?>
+    <div class="grid-row product-full">
+        <div class="grid-col bp2-col-1thr bp2-pull-right bp4-pull-left bp4-col-half ie8-col-1thr ie8-pull-right">
+            <?php echo $this->getChildHtml('product.images') ?>
+       	</div>
+        <div class="grid-col bp2-col-2thr bp4-col-half ie8-col-2thr">
+            <?php if ($_product->getShortDescription()) { echo $_product->getShortDescription(); } ?>
+        </div><!-- close .grid-col -->
+        <div class="grid-col">
+            <div class="product-options">
+				<?php if($_product->isSaleable()){ ?>
+                <h2 class="product-form-heading">Make your selection</h2>
+				<script type="text/javascript">
+                    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+                </script>
+                <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" class="form form-product-options" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+					<?php if($this->hasOptions()){ ?>
+                        <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                        <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+                    <?php } ?>
+                    <?php if(!$_product->isGrouped()){ ?>
+						<?php echo $this->getChildHtml('addtocart') ?>
+                            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+                            <input type="hidden" name="related_product" id="related-products-field" value="" />
+                        </form><!-- close .form-product-options -->
+                    <?php } else { ?>
+                        <?php echo $this->getChildHtml('product_type_data') ?>
+
+						<?php if (!$this->hasOptions()):?>
+                            <div class="add-to-box">
+                                <?php if($_product->isSaleable()): ?>
+                                    <?php echo $this->getChildHtml('addtocart') ?>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+            		<?php } ?>
+				<?php } else { ?>
+                    <div id="product_addtocart_form">
+                        <p class="note">This product is currently out of stock.</p>
+					</div>
+                <?php } ?>
+                <script type="text/javascript">
+                //<![CDATA[
+                    var productAddToCartForm = new VarienForm('product_addtocart_form');
+                    productAddToCartForm.submit = function(button, url) {
+                        if (this.validator.validate()) {
+                            var form = this.form;
+                            var oldUrl = form.action;
+                
+                            if (url) {
+                               form.action = url;
+                            }
+                            var e = null;
+                            try {
+                                this.form.submit();
+                            } catch (e) {
+                            }
+                            this.form.action = oldUrl;
+                            if (e) {
+                                throw e;
+                            }
+                
+                            if (button && button != 'undefined') {
+                                button.disabled = true;
+                            }
+                        }
+                    }.bind(productAddToCartForm);
+                
+                    productAddToCartForm.submitLight = function(button, url){
+                        if(this.validator) {
+                            var nv = Validation.methods;
+                            delete Validation.methods['required-entry'];
+                            delete Validation.methods['validate-one-required'];
+                            delete Validation.methods['validate-one-required-by-name'];
+                            // Remove custom datetime validators
+                            for (var methodName in Validation.methods) {
+                                if (methodName.match(/^validate-datetime-.*/i)) {
+                                    delete Validation.methods[methodName];
+                                }
+                            }
+                
+                            if (this.validator.validate()) {
+                                if (url) {
+                                    this.form.action = url;
+                                }
+                                this.form.submit();
+                            }
+                            Object.extend(Validation.methods, nv);
+                        }
+                    }.bind(productAddToCartForm);
+                //]]>
+                </script>
+            </div><!-- close .product-options -->
+        </div><!-- close .grid-col -->
+	</div><!-- close .product-full -->
+</div><!-- close .module-product-full -->
+<?php echo $this->getChildHtml('product.description') ?>
+<?php echo $this->getChildHtml('product.reviews') ?>
+<?php echo $this->getChildHtml('product.review-form') ?>
+

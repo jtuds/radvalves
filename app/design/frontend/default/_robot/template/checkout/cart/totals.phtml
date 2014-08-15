@@ -1,0 +1,13 @@
+<div class="module-basket-totals">
+    <div class="basket-totals">
+    	<div class="checkout-icon">
+			<span class="hide-text">Basket total</span>
+        	<i class="icon-gbp icon-round"></i>
+        </div>
+        <ul class="basket-totals-list">
+			<?php echo $this->renderTotals(); ?>
+            <?php echo $this->renderTotals('footer'); ?>
+		</ul><!-- close .basket-totals-list -->
+    </div><!-- close .basket-totals -->
+	<?php echo $this->getChildHtml('checkout.link'); ?>
+</div><!-- close .module-basket-totals -->

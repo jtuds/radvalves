@@ -1,0 +1,44 @@
+<?php echo $this->getChildHtml('items_before'); ?>
+<div id="checkout-review-table-wrapper">
+	<div class="grid-offset">
+		<div class="grid-col">
+            <ul class="basket-items-list">
+                <?php $i = 0; foreach($this->getItems() as $_item): $i++; ?>
+                    <?php echo $this->getItemHtml($_item); ?>
+                <?php endforeach; ?>
+            </ul><!-- close .basket-items-list -->
+        </div>
+        <div class="grid-col">
+            <ul class="basket-totals-list">
+				<?php echo $this->getChildHtml('totals'); ?>
+            </ul><!-- close .basket-totals-list -->
+        </div>
+        <div class="grid-col bp1-col-half bp3-col-1qrt ie8-col-1qrt">
+        	<?php echo $this->getChildHtml('checkout.billing-address'); ?>
+        </div>
+        <div class="grid-col bp1-col-half bp3-col-1qrt ie8-col-1qrt">
+        	<?php echo $this->getChildHtml('checkout.delivery-address'); ?>
+        </div>
+        <div class="grid-col bp1-col-half bp3-col-1qrt ie8-col-1qrt">
+        	<?php echo $this->getChildHtml('checkout.delivery-method'); ?>
+        </div>
+        <div class="grid-col bp1-col-half bp3-col-1qrt ie8-col-1qrt">
+        	<?php echo $this->getChildHtml('checkout.payment-method'); ?>
+        </div>
+    </div>
+</div>
+<?php echo $this->getChildHtml('items_after'); ?>
+<div id="checkout-review-submit">
+    <?php echo $this->getChildHtml('agreements') ?>
+    <div id="review-buttons-container" class="checkout-continue-button">
+        <?php echo $this->getChildHtml('button') ?>
+        <div id="review-please-wait" class="checkout-wait" style="display:none;">
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+        review = new Review('<?php echo $this->getUrl('checkout/onepage/saveOrder') ?>', '<?php echo $this->getUrl('checkout/onepage/success') ?>', $('checkout-agreements'));
+    //]]>
+    </script>
+</div>

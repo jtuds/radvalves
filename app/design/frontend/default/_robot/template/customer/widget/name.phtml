@@ -1,0 +1,54 @@
+<?php if ($this->showPrefix()){ ?>
+	<?php if ($this->getPrefixOptions() === false){ ?>
+        <div class="field">
+            <label for="<?php echo $this->getFieldId('prefix')?>" class="field-label<?php if ($this->isPrefixRequired()){ ?> required<?php } ?>"><?php echo $this->getStoreLabel('prefix') ?></label>
+            <input type="text" id="<?php echo $this->getFieldId('prefix')?>" name="<?php echo $this->getFieldName('prefix')?>" value="<?php echo $this->escapeHtml($this->getObject()->getPrefix()) ?>" title="<?php echo $this->getStoreLabel('prefix') ?>" class="input <?php echo $this->helper('customer/address')->getAttributeValidationClass('prefix') ?>" <?php echo $this->getFieldParams() ?> />
+        </div>
+    <?php } else { ?>
+        <div class="field field-select">
+            <label for="<?php echo $this->getFieldId('prefix')?>" class="field-label<?php if ($this->isPrefixRequired()){ ?> required<?php } ?>"><?php echo $this->getStoreLabel('prefix') ?></label>
+            <select id="<?php echo $this->getFieldId('prefix')?>" name="<?php echo $this->getFieldName('prefix')?>" title="<?php echo $this->getStoreLabel('prefix') ?>" class="<?php echo $this->helper('customer/address')->getAttributeValidationClass('prefix') ?>" <?php echo $this->getFieldParams() ?>>
+                <?php foreach ($this->getPrefixOptions() as $_option): ?>
+                    <option value="<?php echo $_option?>"<?php if ($this->getObject()->getPrefix()==$_option):?> selected="selected"<?php endif; ?>><?php echo $this->__($_option)?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    <?php } ?>
+<?php } ?>
+
+<div class="field">
+    <label for="<?php echo $this->getFieldId('firstname')?>" class="field-label required">First name</label>
+    <input type="text" id="<?php echo $this->getFieldId('firstname')?>" name="<?php echo $this->getFieldName('firstname')?>" value="<?php echo $this->escapeHtml($this->getObject()->getFirstname()) ?>" title="<?php echo $this->getStoreLabel('firstname') ?>" maxlength="255" class="input <?php echo $this->helper('customer/address')->getAttributeValidationClass('firstname') ?>" <?php echo $this->getFieldParams() ?> />
+</div>
+
+<?php if ($this->showMiddlename()){ ?>
+	<?php $isMiddlenameRequired = $this->isMiddlenameRequired(); ?>
+    <div class="field name-middlename">
+        <label for="<?php echo $this->getFieldId('middlename')?>" class="field-label<?php echo $isMiddlenameRequired ? ' required' : '' ?>">Middle name(s)</label>
+        <input type="text" id="<?php echo $this->getFieldId('middlename')?>" name="<?php echo $this->getFieldName('middlename')?>" value="<?php echo $this->escapeHtml($this->getObject()->getMiddlename()) ?>" class="input <?php echo $this->helper('customer/address')->getAttributeValidationClass('middlename') ?>" <?php echo $this->getFieldParams() ?> />
+    </div>
+<?php } ?>
+
+<div class="field">
+    <label for="<?php echo $this->getFieldId('lastname')?>" class="field-label required">Surname</label>
+    <input type="text" id="<?php echo $this->getFieldId('lastname')?>" name="<?php echo $this->getFieldName('lastname')?>" value="<?php echo $this->escapeHtml($this->getObject()->getLastname()) ?>" title="<?php echo $this->getStoreLabel('lastname') ?>" maxlength="255" class="input <?php echo $this->helper('customer/address')->getAttributeValidationClass('lastname') ?>" <?php echo $this->getFieldParams() ?> />
+</div>
+
+
+<?php if ($this->showSuffix()){ ?>
+	<?php if ($this->getSuffixOptions() === false){ ?>
+        <div class="field">
+            <label for="<?php echo $this->getFieldId('suffix')?>" class="field-label<?php if ($this->isSuffixRequired()){ ?> required<?php } ?>"><?php echo $this->getStoreLabel('suffix') ?></label>
+            <input type="text" id="<?php echo $this->getFieldId('suffix')?>" name="<?php echo $this->getFieldName('suffix')?>" value="<?php echo $this->escapeHtml($this->getObject()->getSuffix()) ?>" title="<?php echo $this->getStoreLabel('suffix') ?>" class="input <?php echo $this->helper('customer/address')->getAttributeValidationClass('suffix') ?>" <?php echo $this->getFieldParams() ?> />
+		</div>
+	<?php } else { ?>        
+        <div class="field field-select">
+            <label for="<?php echo $this->getFieldId('suffix')?>" class="field-label<?php if ($this->isSuffixRequired()){ ?> required<?php } ?>"><?php echo $this->getStoreLabel('suffix') ?></label>
+            <select id="<?php echo $this->getFieldId('suffix')?>" name="<?php echo $this->getFieldName('suffix')?>" title="<?php echo $this->getStoreLabel('suffix') ?>" class="<?php echo $this->helper('customer/address')->getAttributeValidationClass('suffix') ?>" <?php echo $this->getFieldParams() ?>>
+            <?php foreach ($this->getSuffixOptions() as $_option): ?>
+                <option value="<?php echo $_option?>"<?php if ($this->getObject()->getSuffix()==$_option):?> selected="selected"<?php endif; ?>><?php echo $this->__($_option)?></option>
+            <?php endforeach; ?>
+            </select>
+        </div>
+	<?php } ?>
+<?php } ?>

@@ -1,0 +1,33 @@
+<?php
+/**
+* HELPERS
+*/
+$_store_ID						= Mage::app()->getStore()->getId();
+$_helper    					= $this->helper('catalog/output');
+
+/**
+* PRODUCT VALUES
+*/
+$_product						= $this->getProduct();
+$_product_ID 					= $_product->getId();
+$_product_url					= $_product->getProductUrl();
+$_product_type					= $_product->getTypeId();
+$_product_name					= $_product->getName();
+$_product_short_description		= $_product->getShortDescription();
+$_product_description			= $_product->getDescription();
+$_product_image					= $this->helper('catalog/image')->init($_product,'thumbnail')->resize(420,280);
+$_product_image_url				= Mage::getModel('catalog/product_media_config')->getMediaUrl($_product->getImage());
+$_product_new_from_date			= $_product->getNewsFromDate();
+$_product_new_to_date			= $_product->getNewsToDate();
+$_now							= date("Y-m-d H:m:s");
+$_product_regular_price			= $this->helper('core')->currency($_product->getPrice(),true,false);
+$_product_final_price			= $this->helper('core')->currency($_product->getFinalPrice(),true,false);
+$_product_rating				= Mage::getModel('review/review_summary')->setStoreId($_store_ID)->load($_product_ID)->getRatingSummary();
+$_product_star_rating			= round($_product_rating / 20,1); ?>
+
+<div class="module-content module-product-description">
+	<h2 class="heading">More about <?php echo $_product_name; ?></h2>
+    <?php if($_product_description){ ?>
+        <p><?php echo $_product_description; ?></p>
+	<?php } ?>
+</div><!-- close .module-product-description -->

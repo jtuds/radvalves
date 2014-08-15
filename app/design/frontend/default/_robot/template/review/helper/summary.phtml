@@ -1,0 +1,11 @@
+<div class="product-review-summary">
+	<?php if($_reviews = $this->getReviewsCount()){ ?>
+		<?php if($_product_rating = $this->getRatingSummary()){ ?>
+            <div class="product-rating">
+                <span class="product-star-rating" style="width:<?php echo $_product_rating; ?>%;"><?php echo round($_product_rating / 20,1); ?> out of 5</span>
+            </div>
+        <?php } ?>
+        <a href="#product-reviews" class="button-link"><?php echo $_reviews; ?> <?php if($_reviews == 1){ ?>review<?php } else { ?>reviews<?php } ?></a>
+	<?php } ?>
+	<a href="#product-review-form" class="button-link">Add a review</a>
+</div><!-- close .product-review-summary -->

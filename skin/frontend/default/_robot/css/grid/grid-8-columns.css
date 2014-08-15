@@ -1,0 +1,286 @@
+
+
+/*
+Theme name:		8-column grid
+Version:		1.0 
+Author:			Chris Cairns
+Author URI:		http://www.ccairns.co.uk
+*/
+
+
+/*==================================================================================================
+1.		480 AND UP
+==================================================================================================*/
+
+@media screen and (min-width:480px){
+	
+	/* Standard column widths
+	--------------------------------------------------*/
+	.bp1-col1						{width:12.5%;}
+	.bp1-col2 						{width:25%;}
+	.bp1-col3		 				{width:37.5%;}
+	.bp1-col4		 				{width:50%;}
+	.bp1-col5 						{width:62.5%;}
+	.bp1-col6						{width:75%;}
+	.bp1-col7 						{width:87.5%;}
+	.bp1-col8						{width:100%;}
+	
+	/* Offset columns
+	--------------------------------------------------*/
+	.bp1-offset1					{margin-left:12.5%;}
+	.bp1-offset2 					{margin-left:25%;}
+	.bp1-offset3					{margin-left:37.5%;}
+	.bp1-offset4					{margin-left:50%;}
+	.bp1-offset5 					{margin-left:62.5%;}
+	.bp1-offset6					{margin-left:75%;}
+	.bp1-offset7 					{margin-left:87.5%;}
+	.bp1-offset8					{margin-left:100%;}
+	
+	/* Nested columns
+	--------------------------------------------------*/
+	.bp1-col-1ten					{width:10%;}
+	.bp1-col-1eig					{width:12.5%;}
+	.bp1-col-1fif					{width:20%;}
+	.bp1-col-1qrt					{width:25%;}
+	.bp1-col-1thr					{width:33.33334%;}
+	.bp1-col-half					{width:50%;}
+	.bp1-col-2thr					{width:66.66667%;}
+	.bp1-col-3qrt					{width:75%;}
+	.bp1-col-full					{width:100%;}
+	
+	/* Manipulate column order
+	--------------------------------------------------*/
+	.bp1-pull-right					{float:right;}
+	
+}
+
+
+/*==================================================================================================
+2.		720 AND UP
+==================================================================================================*/
+
+@media screen and (min-width:720px){
+	
+	/* Standard column widths
+	--------------------------------------------------*/
+	.bp2-col1						{width:12.5%;}
+	.bp2-col2 						{width:25%;}
+	.bp2-col3		 				{width:37.5%;}
+	.bp2-col4		 				{width:50%;}
+	.bp2-col5 						{width:62.5%;}
+	.bp2-col6						{width:75%;}
+	.bp2-col7 						{width:87.5%;}
+	.bp2-col8						{width:100%;}
+	
+	/* Offset columns
+	--------------------------------------------------*/
+	.bp2-offset1					{margin-left:12.5%;}
+	.bp2-offset2 					{margin-left:25%;}
+	.bp2-offset3					{margin-left:37.5%;}
+	.bp2-offset4					{margin-left:50%;}
+	.bp2-offset5 					{margin-left:62.5%;}
+	.bp2-offset6					{margin-left:75%;}
+	.bp2-offset7 					{margin-left:87.5%;}
+	.bp2-offset8					{margin-left:100%;}
+	
+	/* Nested columns
+	--------------------------------------------------*/
+	.bp2-col-1ten					{width:10%;}
+	.bp2-col-1eig					{width:12.5%;}
+	.bp2-col-1fif					{width:20%;}
+	.bp2-col-1qrt					{width:25%;}
+	.bp2-col-1thr					{width:33.33334%;}
+	.bp2-col-half					{width:50%;}
+	.bp2-col-2thr					{width:66.66667%;}
+	.bp2-col-3qrt					{width:75%;}
+	.bp2-col-full					{width:100%;}
+	
+	/* Manipulate column order
+	--------------------------------------------------*/
+	.bp2-pull-right					{float:right;}
+	
+}
+
+
+/*==================================================================================================
+3.		980 AND UP
+==================================================================================================*/
+
+@media screen and (min-width:980px){
+	
+	/* Standard column widths
+	--------------------------------------------------*/
+	.bp3-col1						{width:12.5%;}
+	.bp3-col2 						{width:25%;}
+	.bp3-col3		 				{width:37.5%;}
+	.bp3-col4		 				{width:50%;}
+	.bp3-col5 						{width:62.5%;}
+	.bp3-col6						{width:75%;}
+	.bp3-col7 						{width:87.5%;}
+	.bp3-col8						{width:100%;}
+	
+	/* Offset columns
+	--------------------------------------------------*/
+	.bp3-offset1					{margin-left:12.5%;}
+	.bp3-offset2 					{margin-left:25%;}
+	.bp3-offset3					{margin-left:37.5%;}
+	.bp3-offset4					{margin-left:50%;}
+	.bp3-offset5 					{margin-left:62.5%;}
+	.bp3-offset6					{margin-left:75%;}
+	.bp3-offset7 					{margin-left:87.5%;}
+	.bp3-offset8					{margin-left:100%;}
+	
+	/* Nested columns
+	--------------------------------------------------*/
+	.bp3-col-1ten					{width:10%;}
+	.bp3-col-1eig					{width:12.5%;}
+	.bp3-col-1fif					{width:20%;}
+	.bp3-col-1qrt					{width:25%;}
+	.bp3-col-1thr					{width:33.33334%;}
+	.bp3-col-half					{width:50%;}
+	.bp3-col-2thr					{width:66.66667%;}
+	.bp3-col-3qrt					{width:75%;}
+	.bp3-col-full					{width:100%;}
+	
+	/* Manipulate column order
+	--------------------------------------------------*/
+	.bp3-pull-right					{float:right;}
+	
+}
+
+
+/*==================================================================================================
+4.		1200 AND UP
+==================================================================================================*/
+
+@media screen and (min-width:1200px){
+	
+	/* Standard column widths
+	--------------------------------------------------*/
+	.bp4-col1						{width:12.5%;}
+	.bp4-col2 						{width:25%;}
+	.bp4-col3		 				{width:37.5%;}
+	.bp4-col4		 				{width:50%;}
+	.bp4-col5 						{width:62.5%;}
+	.bp4-col6						{width:75%;}
+	.bp4-col7 						{width:87.5%;}
+	.bp4-col8						{width:100%;}
+	
+	/* Offset columns
+	--------------------------------------------------*/
+	.bp4-offset1					{margin-left:12.5%;}
+	.bp4-offset2 					{margin-left:25%;}
+	.bp4-offset3					{margin-left:37.5%;}
+	.bp4-offset4					{margin-left:50%;}
+	.bp4-offset5 					{margin-left:62.5%;}
+	.bp4-offset6					{margin-left:75%;}
+	.bp4-offset7 					{margin-left:87.5%;}
+	.bp4-offset8					{margin-left:100%;}
+	
+	/* Nested columns
+	--------------------------------------------------*/
+	.bp4-col-1ten					{width:10%;}
+	.bp4-col-1eig					{width:12.5%;}
+	.bp4-col-1fif					{width:20%;}
+	.bp4-col-1qrt					{width:25%;}
+	.bp4-col-1thr					{width:33.33334%;}
+	.bp4-col-half					{width:50%;}
+	.bp4-col-2thr					{width:66.66667%;}
+	.bp4-col-3qrt					{width:75%;}
+	.bp4-col-full					{width:100%;}
+	
+	/* Manipulate column order
+	--------------------------------------------------*/
+	.bp4-pull-right					{float:right;}
+	
+}
+
+
+/*==================================================================================================
+5.		1440 AND UP
+==================================================================================================*/
+
+@media screen and (min-width:1440px){
+	
+	/* Standard column widths
+	--------------------------------------------------*/
+	.bp5-col1						{width:12.5%;}
+	.bp5-col2 						{width:25%;}
+	.bp5-col3		 				{width:37.5%;}
+	.bp5-col4		 				{width:50%;}
+	.bp5-col5 						{width:62.5%;}
+	.bp5-col6						{width:75%;}
+	.bp5-col7 						{width:87.5%;}
+	.bp5-col8						{width:100%;}
+	
+	/* Offset columns
+	--------------------------------------------------*/
+	.bp5-offset1					{margin-left:12.5%;}
+	.bp5-offset2 					{margin-left:25%;}
+	.bp5-offset3					{margin-left:37.5%;}
+	.bp5-offset4					{margin-left:50%;}
+	.bp5-offset5 					{margin-left:62.5%;}
+	.bp5-offset6					{margin-left:75%;}
+	.bp5-offset7 					{margin-left:87.5%;}
+	.bp5-offset8					{margin-left:100%;}
+	
+	/* Nested columns
+	--------------------------------------------------*/
+	.bp5-col-1ten					{width:10%;}
+	.bp5-col-1eig					{width:12.5%;}
+	.bp5-col-1fif					{width:20%;}
+	.bp5-col-1qrt					{width:25%;}
+	.bp5-col-1thr					{width:33.33334%;}
+	.bp5-col-half					{width:50%;}
+	.bp5-col-2thr					{width:66.66667%;}
+	.bp5-col-3qrt					{width:75%;}
+	.bp5-col-full					{width:100%;}
+	
+	/* Manipulate column order
+	--------------------------------------------------*/
+	.bp5-pull-right					{float:right;}
+	
+}
+
+
+/*==================================================================================================
+6.		IE FIXES
+==================================================================================================*/
+
+/* Standard column widths
+--------------------------------------------------*/
+.ie8 .ie-col1						{width:12.5%;}
+.ie8 .ie-col2 						{width:25%;}
+.ie8 .ie-col3		 				{width:37.5%;}
+.ie8 .ie-col4		 				{width:50%;}
+.ie8 .ie-col5 						{width:62.5%;}
+.ie8 .ie-col6						{width:75%;}
+.ie8 .ie-col7 						{width:87.5%;}
+.ie8 .ie-col8						{width:100%;}
+
+/* Offset columns
+--------------------------------------------------*/
+.ie8 .ie-offset1					{margin-left:12.5%;}
+.ie8 .ie-offset2 					{margin-left:25%;}
+.ie8 .ie-offset3					{margin-left:37.5%;}
+.ie8 .ie-offset4					{margin-left:50%;}
+.ie8 .ie-offset5 					{margin-left:62.5%;}
+.ie8 .ie-offset6					{margin-left:75%;}
+.ie8 .ie-offset7 					{margin-left:87.5%;}
+.ie8 .ie-offset8					{margin-left:100%;}
+
+/* Nested columns
+--------------------------------------------------*/
+.ie8 .ie-col-1ten					{width:10%;}
+.ie8 .ie-col-1eig					{width:12.5%;}
+.ie8 .ie-col-1fif					{width:20%;}
+.ie8 .ie-col-1qrt					{width:25%;}
+.ie8 .ie-col-1thr					{width:33.33334%;}
+.ie8 .ie-col-half					{width:50%;}
+.ie8 .ie-col-2thr					{width:66.66667%;}
+.ie8 .ie-col-3qrt					{width:75%;}
+.ie8 .ie-col-full					{width:100%;}
+
+/* Manipulate column order
+--------------------------------------------------*/
+.ie8 .ie-pull-right					{float:right;}

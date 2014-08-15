@@ -1,0 +1,4 @@
+<div class="product-buttons clear">
+    <a href="<?php echo $this->helper('wishlist')->getAddUrl($this->getProduct()); ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="button-link">Add to wishlist</a>
+    <?php echo $this->getChildHtml('product.social-buttons') ?>
+</div>

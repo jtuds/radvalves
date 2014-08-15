@@ -1,0 +1,36 @@
+<?php if( $this->getCollection() && $this->count()): ?>
+    <div class="module-product-reviews">
+        <h2 class="heading">Recent product reviews</h2>
+        <ul class="reviews-list">
+       
+			<?php 
+            /**
+            * VARIABLES
+            */
+			$i = 0; foreach($this->getCollection() as $_review): $i++;
+            $_review_product_name			= $this->htmlEscape($_review->getName());
+            $_review_title					= $this->htmlEscape($_review->getTitle());
+            $_review_author					= $this->htmlEscape($_review->getNickname());
+            $_review_content				= nl2br($this->htmlEscape($_review->getDetail()));
+            $_review_date					= explode(' ',$_review->getReviewCreatedAt());
+            $_review_date					= strtotime($_review_date[0]);
+            $_review_month					= date('M',$_review_date);
+            $_review_day					= date('j',$_review_date);
+			?>
+            
+                <li>
+                    <div class="product-rating">
+                        <?php $_review_percentage = $_review->getSum() / $_review->getCount(); ?>
+                        <span class="product-star-rating" style="width:<?php echo $_review_percentage; ?>%;"><?php echo round($_review_percentage / 20,1); ?> out of 5</span>
+                    </div>
+                    <h3 class="review-title"><?php echo $_review_title; ?></h3>
+                    <p><?php echo $_review_content; ?></p>
+                    <div class="review-date date-box">
+                        <span class="month"><?php echo $_review_month; ?></span>
+                        <span class="date"><?php echo $_review_day; ?></span>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul><!-- close .reviews-list -->
+    </div><!-- close .module-product-reviews -->
+<?php endif; ?>

@@ -1,0 +1,40 @@
+<?php if($_items = $this->getReviewsCollection()->getItems()){ ?>
+    <div class="module-product-reviews" id="product-reviews">
+		<h2 class="heading"><?php if(count($_items) == 1){ ?>1 review<?php } else { echo count($_items); ?> reviews<?php } ?></h2>
+        <ul class="reviews-list">
+        
+			<?php 
+            /**
+            * VARIABLES
+            */
+			$i = 0; foreach($_items as $_review): $i++;
+            $_review_product_name			= $this->htmlEscape($_review->getName());
+            $_review_title					= $this->htmlEscape($_review->getTitle());
+            $_review_author					= $this->htmlEscape($_review->getNickname());
+            $_review_content				= nl2br($this->htmlEscape($_review->getDetail()));
+            $_review_date					= explode(' ',$_review->getCreatedAt());
+            $_review_date					= strtotime($_review_date[0]);
+            $_review_month					= date('M',$_review_date);
+            $_review_day					= date('j',$_review_date);
+			?>
+            
+                <li>
+                    <?php $_votes = $_review->getRatingVotes(); ?>
+                    <?php if(count($_votes)){ ?>
+                        <?php $i = 0; foreach($_votes as $_vote): $i++; ?>
+                            <div class="product-rating">
+                                <span class="product-star-rating" style="width:<?php echo $_vote->getPercent(); ?>%;"><?php echo round($_vote->getPercent()/20,1); ?> out of 5</span>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php } ?>
+                    <h3 class="review-title"><?php echo $_review_title; ?></h3>
+                    <p><?php echo $_review_content; ?></p>
+                    <div class="review-date date-box">
+                        <span class="month"><?php echo $_review_month; ?></span>
+                        <span class="date"><?php echo $_review_day; ?></span>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul><!-- close .reviews-list -->
+    </div><!-- close .module-product-reviews -->
+<?php } ?>

@@ -1,0 +1,304 @@
+body:before {display:none; /*edit to block to debug*/ content:""; width:100%; height:2em; font-size:14px; text-align:center; background:red;}
+
+/*
+Theme name:		Layout-alt.css
+Description:	Layout rules for 1200 and down - overrides layout.css
+Author:			James Tudsbury
+Author URI:		http://www.robotcreative.co.uk
+*/
+
+/*==================================================================================================
+1.		960 AND DOWN
+==================================================================================================*/
+
+@media (max-width:960px) {
+
+body:before {content:"960-";}
+
+	.navbar-menu .level0 > a {
+		font-size:12px;
+	}
+	.carousel-img {
+		max-height:100%;
+		float:right;
+	}
+	.module-masthead-text, .module-masthead-promo .top, .module-masthead-promo .bottom {
+		text-align:center;
+	}
+	.pre-footer-col {
+		border-left:1px solid #9778D3;
+		margin:20px 0;
+		padding-bottom:0;
+	}
+	.pre-footer-col:nth-child(1) {
+		border-left:none;
+	}
+	.pre-footer-col {
+		border-right:none;
+	}
+	.module-pre-footer-offer-news .form .field {
+		width:40%;
+	}
+	.module-pre-footer-offer-news .form .form-button {
+		position:relative;
+		top:0;
+		right:-5px;
+	}
+	.module-copyright {
+		background-position:0 bottom;
+	}
+	.module-copyright p {
+		text-align:left;
+	}
+	.panel-footer .logo {
+		max-width:100%;
+	}
+	.page-product .product-sidebar {
+		margin:0 0 20px;
+		padding:20px;
+	}
+	.module-sidebar-basket .shopping-cart-button {
+		display:inline-block;
+	}
+	/* Basket/filter closed/short (reqs JS)
+	----------------------------------*/
+	.module-sidebar-basket.closed, .box-products-filter.closed {
+		background-image:none;
+		padding:10px 5px;
+		cursor:pointer;
+	}
+	.module-sidebar-basket.closed .items-count-short,
+	.module-sidebar-basket.closed .basket-header-short {
+		display:inline-block;
+		font-family:'UniversLTW01-67BoldCn';
+		font-size:18px;
+		text-transform:uppercase;
+	}
+	.module-sidebar-basket.closed .show-basket-icon.closed, .box-products-filter.closed .show-filter-icon.closed {
+		display:inline-block;
+		background-color:transparent;
+		padding:0;
+	}
+	.module-sidebar-basket.closed .basket-items-count,
+	.module-sidebar-basket.closed .basket-totals-list,
+	.module-sidebar-basket.closed .basket-items-list,
+	.module-sidebar-basket.closed .button-checkout,
+	.module-sidebar-basket .show-basket-icon span,
+	.box-products-filter.closed .products-filter,
+	.box-products-filter .show-filter-icon span {
+		display:none;
+	}
+	
+	/* Basket/filter open (reqs JS)
+	----------------------------------*/
+	.module-sidebar-basket.open .show-basket-icon.open, .box-products-filter.open .show-filter-icon.open {
+		display:inline-block;
+		background-color:transparent;
+		padding:10px 0;
+		cursor:pointer;
+	}
+	.module-sidebar-basket.open .show-basket-icon.open {
+		width:10%;
+	}
+	.module-online-shopping {
+		font-size:20px;
+	}
+	.module-online-shopping span:after {
+		margin-left:10px;
+	}
+	.module-online-shopping span i {
+		margin:0 10px;
+	}
+
+}
+
+/*==================================================================================================
+2.		860 AND DOWN
+==================================================================================================*/
+
+@media (max-width:860px) {
+
+body:before {content:"860-";}
+
+	.module-header-info-box .info-search-box-item {
+		width:100%;
+	}
+	.module-header-info-box .info-search-box-item .field.info-search {
+		width: 100%;
+		font-size: 12px;
+	}
+	.module-header-info-box .info-search-box-item .form .button {
+		display:block;
+	}
+	
+}
+
+/*==================================================================================================
+3.		720 AND DOWN
+==================================================================================================*/
+
+@media (max-width:720px) {
+	
+body:before {content:"720-";}
+
+	.header-logo {
+		background-image:url('../assets/logo-thin.png');
+		background-repeat:no-repeat;
+		background-size:100%;
+		height:50px;
+		max-width:232px;
+		margin-top:30px;
+		display:block;
+	}
+	.header-logo a {
+		height:100%;
+		width:100%;
+	}
+	.header-logo .logo {
+		display:none;
+	}
+	.module-header-info i {
+		margin:0 5px;
+	}
+	.module-header-info, .module-header-info-box {
+		margin-bottom:0;
+	}
+	.module-header-info-box .info-box-item {
+		margin:5px 0;
+	}
+	.module-header-info-box .info-box-divide {
+		display:none;
+	}
+	.module-header-info-box .info-search-box-item .field.info-search {
+		border:1px solid #DADCDD;
+		margin-top:3px;
+		position:relative;
+		right:10px;
+		width:98.5%;
+	}
+	.module-info-box-contact-search {
+		background:transparent;
+		text-align:right;
+		padding:0;
+	}
+	.module-header-info-box .icon-search {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.module-navbar-menu {
+		margin:0;
+		padding:0 10px;
+	}
+	.navbar-window {
+		overflow:hidden;
+		height:0;
+	}
+	.navbar-menu {
+		padding:0;
+	}
+	.navbar-menu li.level0 {
+		float:none;
+	}
+	.navbar-menu li.level0, .navbar-menu li.level0.nav-1 {
+		width:100%;
+	}
+	.navbar-menu li.level0 > a {
+		font-size:14px;
+		padding:10px;
+		border-bottom:1px solid #dcdcdc;
+		-webkit-border-radius:0;
+				border-radius:0;
+	}
+	.navbar-menu li.level0 > a .break {
+		display:inline;
+	}
+	.navbar-menu li.level0.nav-1 a {
+		padding:10px 10%;
+	}
+	.module-masthead-text, .module-masthead-promo .top, .module-masthead-promo .bottom {
+		text-align:left;
+	}
+	.panel-footer .grid-col {
+		text-align:center;
+	}
+	.panel-footer .logo {
+		margin:0 auto 20px
+	}
+	.product-full .product-options {
+		margin-top:20px;
+	}
+	.product-full .product-buttons button {
+		width:50%;
+	}
+	.product-form-heading:after {
+		content:"\f07e";
+		font-family:"FontAwesome";
+		display:block;
+		margin-top:5px;
+	}
+	.grouped-products {
+		overflow:scroll;
+	}
+	.module-online-shopping span {
+		white-space:nowrap;
+	}
+	.module-online-shopping .intro {
+		display:block;
+		margin:0 0 10px 20px;
+	}
+	.module-online-shopping .intro:after {
+		border:none;
+	}
+	
+}
+
+/*==================================================================================================
+4.		480 AND DOWN
+==================================================================================================*/
+
+@media (max-width:480px) {
+	
+body:before {content:"480-";}
+
+	.header-logo {
+		margin:30px auto 0;
+	}
+	.module-header-info-box-basket.closed {
+		display:none;
+	}
+	.module-header-info-box.module-info-box-contact-search {
+		text-align:center;
+		padding:0;
+	}
+	.module-masthead-text {
+		font-size:26px;
+		line-height:28px;
+	}
+	.carousel-img {
+		display:none;
+	}
+	.panel-footer .grid-col {
+		margin:10px 0;
+	}
+	.product-full {
+		margin:0 -15px;
+	}
+	.product-full .product-buttons button {
+		width:80%;
+	}
+	.module-masthead-promo .top, .module-masthead-promo .bottom {
+		text-align:center;
+	}
+	.module-masthead-promo .promo-img {
+		display:none;
+	}
+	.module-online-shopping span {
+		display:block;
+		margin-bottom:10px;
+	}
+	.module-online-shopping span:after {
+		border:none;
+	}
+	
+}

@@ -1,0 +1,56 @@
+<div class="module-address-book">
+    <h1 class="page-title">Address book</h1>
+	<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <a href="<?php echo $this->getAddAddressUrl() ?>">Add a new address</a>
+    <ul class="grid-offset address-book">
+    	<li class="grid-col bp2-col-half ie8-col-half">
+			<div class="address-entry">
+                <i class="icon-map-marker"></i>
+				<?php if($_pAddsses = Mage::getSingleton('customer/session')->getCustomer()->getDefaultBilling()){ ?>
+                    <span class="address-type">Default billing address</span>
+                    <address><?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?></address>
+                    <a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>">Edit billing address</a>
+                <?php } else { ?>
+                    <a href="<?php echo $this->getAddAddressUrl() ?>">Add a billing address</a></p>
+                <?php } ?>
+            </div>
+        </li>
+    	<li class="grid-col bp2-col-half ie8-col-half">
+			<div class="address-entry">
+                <i class="icon-map-marker"></i>
+				<?php if($_pAddsses = Mage::getSingleton('customer/session')->getCustomer()->getDefaultShipping()){ ?>
+                    <span class="address-type">Default delivery address</span>
+                    <address><?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?></address>
+                    <a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>">Edit delivery address</a>
+                <?php } else { ?>
+                    <a href="<?php echo $this->getAddAddressUrl() ?>">Add a delivery address</a></p>
+                <?php } ?>
+            </div>
+        </li>
+    </ul>
+
+	<?php if($_pAddsses = $this->getAdditionalAddresses()): ?>
+        <ul class="grid-offset address-book">
+			<?php foreach($_pAddsses as $_address): ?>
+            	<li class="grid-col bp2-col-half ie8-col-half">
+                    <div class="address-entry">
+                        <i class="icon-map-marker"></i>
+                        <address><?php echo $this->getAddressHtml($_address) ?></address>
+                        <a href="<?php echo $this->getUrl('customer/address/edit', array('id'=>$_address->getId())) ?>">Edit this address</a> &#124; <a href="#" class="link-remove" onclick="return deleteAddress('<?php echo $_address->getId() ?>');">Delete this address</a>
+                	</div>
+                </li>
+			<?php endforeach; ?>
+        </ul>
+	<?php endif ?>
+    
+    <script type="text/javascript">
+    //<![CDATA[
+        function deleteAddress(addressId) {
+            if(confirm('<?php echo $this->__('Are you sure you want to delete this address?') ?>')) {
+                window.location='<?php echo $this->getDeleteUrl() ?>id/'+addressId;
+            }
+            return false;
+        }
+    //]]>
+    </script>
+</div><!-- close .module-address-book -->

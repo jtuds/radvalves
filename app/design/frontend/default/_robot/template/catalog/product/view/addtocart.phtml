@@ -1,0 +1,15 @@
+<?php if($this->getProduct()->isSaleable()){ ?>
+    <?php if(!$this->getProduct()->isGrouped()){ ?>
+        <div class="field field-quantity">
+            <label for="qty" class="field-label required">How many would you like?</label>
+            <input type="text" name="qty" id="qty" value="<?php echo $this->getProductDefaultQty() * 1 ?>" class="input qty" />
+        </div>
+    <?php } ?>
+    <?php echo $this->getChildHtml('product.notes'); ?>
+    <div class="product-buttons clear">
+        <button type="button" role="button" class="button-important" onclick="productAddToCartForm.submit(this)">
+            <span class="text">Add to basket</span>
+        </button>
+		<?php echo $this->getChildHtml('product.social-buttons') ?>
+   </div>
+<?php } ?>

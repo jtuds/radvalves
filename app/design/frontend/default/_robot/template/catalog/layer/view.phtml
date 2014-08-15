@@ -1,0 +1,52 @@
+<?php if($this->canShowBlock()){ ?>
+
+    <div class="module-box">
+
+        <div class="box box-products-filter">
+
+            <div class="box-contents">
+
+        		<h3 class="box-heading"><i class="icon-filter"></i><span>Filter results</span></h3>
+                <i class="icon-caret-down show-filter-icon closed"><span>Show filters</span></i>
+                <i class="icon-caret-up show-filter-icon open"><span>Hide filters</span></i>
+
+                
+
+				<div class="products-filter">
+
+					<?php echo $this->getStateHtml() ?>
+
+                    <?php if($this->canShowOptions()): ?>
+
+                        <?php $_filters = $this->getFilters() ?>
+
+                        <?php foreach ($_filters as $_filter): ?>
+
+                            <?php if($_filter->getItemsCount()): ?>
+                            
+                            	<div class="filter-section">
+
+                                	<div class="filter-type"><?php echo $this->__($_filter->getName()) ?></div>
+
+                                	<?php echo $_filter->getHtml() ?>
+                                
+                        		</div>
+
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
+
+                    <?php endif; ?>
+
+            	</div><!-- close .products-filter -->
+
+                
+
+            </div><!-- close .box-contents -->
+
+        </div><!-- close .box -->
+
+    </div><!-- close .module-box -->
+
+<?php } ?>
+

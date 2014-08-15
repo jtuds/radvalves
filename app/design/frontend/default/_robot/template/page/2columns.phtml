@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--[if IE 7]><html lang="en-GB" class="ie9 ie8 ie7"><![endif]-->
+<!--[if IE 8]><html lang="en-GB" class="ie9 ie8"><![endif]-->
+<!--[if IE 9]><html lang="en-GB" class="ie9"><![endif]-->
+<!--[if !IE]><!--><html lang="en-GB"><!--<![endif]-->
+<?php echo $this->getChildHtml('head') ?>
+<body>
+<?php echo $this->getChildHtml('topbar') ?>
+<div class="container">
+    <?php echo $this->getChildHtml('header') ?>
+    <?php echo $this->getChildHtml('navbar') ?>
+
+    <div class="grid-panel panel-main" role="main">
+        <div class="grid-row">
+            <div class="grid-col bp3-col12 ie8-col12">
+                <?php echo $this->getChildHtml('breadcrumbs') ?>
+                <?php echo $this->getChildHtml('content') ?>
+            </div><!-- close .grid-col -->
+            <div class="grid-col bp3-col12 ie8-col12">
+                <?php echo $this->getChildHtml('right') ?>
+            </div><!-- close .grid-col -->
+        </div><!-- close .grid-row -->
+    </div><!-- close .grid-panel -->
+    
+    <div class="push"></div>
+</div><!-- close .container -->
+<?php echo $this->getChildHtml('footer') ?>
+</body>
+</html>
